@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+*{
+	text-align:center;
+	margin:0px;
+	padding:0px;
+	box-sizing:border-box;
+}
+
+.Conatainer{
+	width:700px;
+	height:250px;
+	display:flex;
+    flex-direction: row;
+    justify-content:space-around;
+	background-color:#429bf5;
+    margin:0px auto;
+    margin-top:40px;
+    padding-top:80px;
+}
+
+.small_div{
+	width:150px;
+	height:80px;
+	display:inline-block;
+	background-color:#51cc3b;
+    padding-top:28px;
+}
+
+.small_div a{
+	text-decoration:none;
+}
+
+.small_div:hover{
+	background-color:#30b319;
+    cursor:pointer;
+   
+}
+
+a{
+	display:block;
+    width:100%;
+    height:100%;   
+	color:black;
+	font-size:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<br>
+
+<h1>Mails menu</h1>
+<br>
+<h2>Click the link below:</h2>
+
+<div class="Conatainer">
+	<div class="small_div"><a href="Inbox.php">Inbox</a></div>
+	<div class="small_div"><a href="Sent.php">Sent</a></div>
+	<div class="small_div"><a href="Compose.html">Compose</a></div>
+</div>
+
+
+
+</body>
+</html>
