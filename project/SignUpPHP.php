@@ -4,6 +4,7 @@ if(isset($_POST['submit'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$telephone = $_POST['telephone'];
+	$date_of_birth = $_POST['date_of_birth'];
 	
 
 	//connect to database
@@ -14,7 +15,7 @@ if(isset($_POST['submit'])){
 		echo 'Connection Error: ' . mysqli_connect_error();
 	}
 
-	$sql = mysqli_query($conn,"INSERT INTO users(username,password,telephone) values ('$username', '$password','$telephone')");
+	$sql = mysqli_query($conn,"INSERT INTO users(username,password,telephone,date_of_birth) values ('$username', '$password','$telephone','$date_of_birth')");
 
 	if($sql){
 		

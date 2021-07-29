@@ -28,28 +28,38 @@ if(!$conn){
 
 
 
-//writing a query for all pizzzas
-$sql = "SELECT * FROM groups INNER JOIN members ON members.group_id=groups.id INNER JOIN users ON users.id=members.user_id WHERE users.id='$resultstring'";
+//query, to show the groups, where I take part
+$sql = "SELECT groups.name, groups.id FROM groups INNER JOIN members ON members.group_id=groups.id INNER JOIN users ON users.id=members.user_id WHERE users.id='$resultstring'";
+
+
+
 
 //make query ang get result
 $result = mysqli_query($conn, $sql);
 
 
-		
-
-		
-	//delete task
-	//if 'del_task' is pressed
-	if(isset($_GET['del_task'])){
+	//show todos in the group
+	//if 'show_todos' is pressed
+	if(isset($_GET['show_todos'])){
 	
-		$id=$_GET['del_task'];
-		mysqli_query($conn,"DELETE FROM todos WHERE id='$id'");
-		header("Location:Todos.php");
-				
+		$_SESSION['group_id'] = $_GET['show_todos'];
+		
+		header("Location:Group_todosPHP.php");
+			
+	}
+
+	
+	//show memebers in the group
+	//if 'show_members' is pressed
+	if(isset($_GET['show_members'])){
+	
+		$_SESSION['group_id'] = $_GET['show_members'];
+		
+		header("Location:Group_membersPHP.php");
+			
 	}
 		
 	
-
 ?>
 
 
@@ -59,7 +69,7 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mini CRM</title>
 
 <style>
 
@@ -68,28 +78,34 @@ $result = mysqli_query($conn, $sql);
 		text-align:left;
 	}
 	th{
-		color:green;
+			
 		font-size:20px;
-		background-color:#d1f79c;
+		background-color:#32d95f;
 	}
+	
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+	
 	tr:hover{
 		background-color:#e8e4e3;
 	}
 	
-
 
 </style>
 
 </head>
 <body>
 
-<h1>The groups's, where I take part:</h1>
+<h1>All the groups's, where I take part:</h1>
 
 <table>
 
 <tr>
 	<th>Nr.</th>
 	<th>Group name</th>
+	<th>The todo's in the group</th>
+	<th>The members in the group</th>
 </tr>
 
 
@@ -99,8 +115,9 @@ $result = mysqli_query($conn, $sql);
 
 <tr>
 	<td><?php echo $i; ?></td>
-	<td><?php echo $row["group_name"]; ?></td>
-	<td><a href="Todos.php?del_task=<?php echo $row['id']; ?>">X</a></td>
+	<td><?php echo $row["name"]; ?></td>
+	<td><a href="GroupsPHP.php?show_todos=<?php echo $row['id']; ?>">Let's see</a></td>
+	<td><a href="GroupsPHP.php?show_members=<?php echo $row['id']; ?>">Show it</a></td>
 
 </tr>
 

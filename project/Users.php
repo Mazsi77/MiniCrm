@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mini CRM</title>
 
 <style>
 
@@ -15,6 +15,9 @@
 		color:green;
 		font-size:20px;
 		background-color:#d1f79c;
+	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
 	}
 	tr:hover{
 		background-color:#e8e4e3;
@@ -33,11 +36,16 @@
 <tr>
 	<th>Username</th>
 	<th>Phone number</th>
+	<th>Date of birth</th>
 </tr>
 
 
 
 <?php
+
+session_start();
+
+$uu=$_SESSION['username'];
 
 
 //connect to database
@@ -50,7 +58,7 @@ if(!$conn){
 
 
 //writing a query for all pizzzas
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users WHERE username!='$uu'";
 
 //make query ang get result
 $result = mysqli_query($conn, $sql);
@@ -58,7 +66,7 @@ $result = mysqli_query($conn, $sql);
 //output
 if($result-> num_rows > 0){
 	while($row = $result-> fetch_assoc()){
-		echo "<tr><td>" . $row["username"] . "</td><td>" . $row["telephone"] . "</td></tr>";
+		echo "<tr><td>" . $row["username"] . "</td><td>" . $row["telephone"] . "</td><td>" . $row["date_of_birth"] . "</td></tr>";
 	}
 	echo "</table>";
 }

@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mini CRM</title>
 <style>
 
 *{
@@ -30,7 +30,7 @@
 }
 
 .Conatainer{
-	width:900px;
+	width:1100px;
 	height:250px;
 	display:flex;
     flex-direction: row;
@@ -75,14 +75,15 @@ a{
 
 <h2>Here is the Logged In Menu</h2>
 <br>
-<h2>Click the link below:</h2>
+
 
 <div class="Conatainer">
+	<div class="small_div"><a href="GroupsMenu.html">Open Groups Menu</a></div>
+	<div class="small_div"><a href="MailsMenu.html">Open the Mails Menu</a></div>
 	<div class="small_div"><a href="Todos.php">Your todos</a></div>
 	<div class="small_div"><a href="Users.php">Other users</a></div>
-	<div class="small_div"><a href="MailsMenu.html">Open the Mails Menu</a></div>
 	<div class="small_div"><a href="EditAccount.html">Edit your account</a></div>
-	<div class="small_div"><a href="GroupsMenu.html">Open Groups Menu</a></div>
+	
 </div>
 
 

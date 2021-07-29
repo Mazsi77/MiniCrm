@@ -30,6 +30,9 @@
 		font-size:20px;
 		background-color:#d1f79c;
 	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
 
 
 </style>

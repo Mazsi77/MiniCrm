@@ -105,7 +105,7 @@ if(isset($_POST['submit2'])){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mini CRM</title>
 
 <style>
 
@@ -118,6 +118,9 @@ if(isset($_POST['submit2'])){
 		font-size:20px;
 		background-color:#d1f79c;
 	}
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
 	tr:hover{
 		background-color:#e8e4e3;
 	}
@@ -129,7 +132,7 @@ if(isset($_POST['submit2'])){
 </head>
 <body>
 
-<h1>The todo's of the user:</h1>
+<h1>My personal todos:</h1>
 
 <table>
 

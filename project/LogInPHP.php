@@ -3,12 +3,6 @@
 // Start the session
 session_start();
 
-?>
-
-
-
-<?php
-
 
 // if submit button is pressed
 if(isset($_POST['submit'])){
