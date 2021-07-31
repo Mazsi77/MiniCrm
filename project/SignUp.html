@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<head>
+		<meta charset="UTF-8">
+		<title>Create Account - MiniCRM</title>
+		<link rel="stylesheet" href="./Styles/universalstyles.css">
+		<link rel="stylesheet" href="./Styles/signstyles.css">
+	</head>
+	<body>
+		<header>
+			<h1 class="logo">Mini<span>CRM</span></h1>
+		</header>
+		<div class="photo"></div>
+		<section class="form">
+			<form action="SignUpPHP.php" method="post">
+				<h2>Create An Account</h2>
+				<div class="item">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" placeholder="Your Username">
+				</div>
+				<div class="item">
+					<label for="password">Password</label>
+					<input type="text" name="password" id="password" placeholder="Your Password">
+				</div>
+				<div class="item">
+					<label for="telephone">Phone Number</label>
+					<input type="number" name="telephone" id="telephone" placeholder="Your Phone Number" >
+				</div>
+				<div class="item">
+					<label for="date_of_birth">Date of Birth</label>
+					<input type="date" name="date_of_birth" id="date">
+				</div>
+				<input type="submit" value="Sign In" name="submit">
+			</form>
+			<p class="create">Allready have an account?<br> <a href="./LogIn.html" min="1900-01-01" max=>Sign In</a></p>
+		</section>
 
-</head>
-<body>
+		<script>
+			//szúletési dátum maxium a mai dátum
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			if(dd<10){
+					dd='0'+dd
+				} 
+				if(mm<10){
+					mm='0'+mm
+				} 
 
-<h1>Create Account</h1>
-
-<form action="SignUpPHP.php" method="post">
-
-<table>
-
-<tr>
-	<td>Username</td>
-	<td><input type="text" name="username"></td>
-</tr>
-<tr>
-	<td>Password</td>
-	<td><input type="text" name="password"></td>
-</tr>
-<tr>
-	<td>Phone number</td>
-	<td><input type="text" name="telephone"></td>
-</tr>
-<tr>
-	<td>Date of birth</td>
-	<td><input type="date" name="date_of_birth"></td>
-</tr>
-
-<tr>
-	<td><input type="submit" name="submit" value="Create user"></td>
-</tr>
-</table>
-
-
-</body>
+			today = yyyy+'-'+mm+'-'+dd;
+			document.getElementById("date").setAttribute("max", today);
+		</script>
+	</body>
 </html>
