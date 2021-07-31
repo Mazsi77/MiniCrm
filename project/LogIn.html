@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Mini CRM</title>
-
-</head>
-<body>
-
-<h1>Log In</h1>
-
-
-<form action="LogInPHP.php" method="post">
-
-<table>
-
-<tr>
-	<td>Username</td>
-	<td><input type="text" name="username"></td>
-</tr>
-<tr>
-	<td>Password</td>
-	<td><input type="text" name="password"></td>
-</tr>
-<tr>
-	<td><input type="submit" name="submit" value="Log In"></td>
-</tr>
-</table>
-
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Mini CRM</title>
+		<link rel="stylesheet" href="universalstyles.css">
+		<style>
+			body{
+				display: flex;
+				flex-direction: row;
+			}
+			header{
+				position: fixed;
+				top: 0.2rem;
+				left: 2rem;
+			}
+			.photo{
+				height: 100vh;
+				width: 55%;
+				margin-right: -50px;
+				background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');
+				background-position: center;
+			}
+			.form{
+				color: white;
+				background-color: #101C29;
+				width: 55%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				border-radius: 50px 0px 0px 50px;
+			}
+			.form h2{
+				font-size: 2.3rem;
+				font-family: 'Cairo', sans-serif;
+				font-weight: normal;
+			}
+			form{
+				display: flex;
+				flex-direction: column;
+				text-align: left;
+				width: 100%;
+				justify-content: center;
+				align-items: center;
+				font-size: 1.3rem;
+			}
+			.form label{
+				align-self: flex-start;
+			}
+			.item{
+				display: flex;
+				flex-direction: column;
+				width: 75%;
+				padding-bottom: 2em;
+			}
+			input{
+				font-size: 1.5rem;
+				padding: 0.2em;
+				padding-left: 0.5em;
+				border-radius: 10px;
+			}
+			input[type=submit]{
+				background-color: #F9B403;
+				border: none;
+				border-radius: 10px;
+				padding: 0.2em 2em;
+			}
+			.create{
+				line-height: 150%;
+				font-size: 1.3rem;
+				font-weight: normal;
+			}
+			.create a{
+				color: #F9B403;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1 class="logo">Mini<span>CRM</span></h1>
+		</header>
+		<div class="photo"></div>
+		<section class="form">
+			<form action="LogInPHP.php" method="post">
+				<h2>Sign In</h2>
+				<div class="item"><label for="username">Username</label>
+				<input type="text" name="username" id="username" placeholder="Your Username"></div>
+				<div class="item"><label for="password">Password</label>
+				<input type="text" name="password" id="password" placeholder="Your Password"> </div>
+				<input type="submit" value="Sign In" name="submit">
+			</form>
+			<p class="create">Don't have an account yet? <br> <a href="./SignUp.html">Create an Account</a></p>
+		</section>
+	</body>
 </html>
