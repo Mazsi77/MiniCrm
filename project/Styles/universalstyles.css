@@ -6,16 +6,24 @@ body, html{
     margin: 0;
     line-height: 150%;
 }
+
  *{
      box-sizing: border-box;
  }
+
  .logo{
     font-family: 'Volkhov', serif;
     color: white;
     font-size: 1.8rem;
  }
+ .sideMenu {
+    background-color: #101C29;
+    color: white;
+}
  .logo span{
      color: #F9B403;
      font-weight: bold;
      font-size: 2rem;
  }
+
+
