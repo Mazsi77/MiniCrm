@@ -148,7 +148,7 @@ if(isset($_POST['new_group'])){
 
 <h1>Only the groups, where you're an administrator:</h1>
 
-<h2>Here you colud manage the groups</h2>
+<h2>Here you colud manage the groups, members and todos</h2>
 
 <table>
 

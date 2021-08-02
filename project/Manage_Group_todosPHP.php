@@ -63,6 +63,23 @@ if(isset($_GET['del_task'])){
 			
 }
 
+//Open member works
+//if 'member_works' is pressed
+if(isset($_GET['member_works'])){
+								
+		$_SESSION['todo_id']=$_GET['member_works'];
+							
+		header("Location:Member_WorksPHP.php");
+		exit;
+						
+				
+			
+}
+
+
+
+
+
 
 ?>
 
@@ -109,6 +126,7 @@ if(isset($_GET['del_task'])){
 	<th>Nr.</th>
 	<th>Tiltle</th>
 	<th>Date</th>
+	<th>Open the member works</th>
 	<th>Delete todo</th>
 </tr>
 
@@ -121,6 +139,7 @@ if(isset($_GET['del_task'])){
 	<td><?php echo $i; ?></td>
 	<td><?php echo $row["title"]; ?></td>
 	<td><?php echo $row["date"]; ?></td>
+	<td><a href="Manage_Group_todosPHP.php?member_works=<?php echo $row['id']; ?>">Open</a></td>
 	<td><a href="Manage_Group_todosPHP.php?del_task=<?php echo $row['id']; ?>">X</a></td>
 
 </tr>

@@ -16,7 +16,7 @@ if(!$conn){
 }
 
 
-$sql = "SELECT * FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
+$sql = "SELECT group_todos.id, group_todos.title, group_todos.date FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
 
 
 //make query ang get result
@@ -26,7 +26,21 @@ $result = mysqli_query($conn, $sql);
 //$conn-> close();
 
 
-//}
+
+
+
+	//Upload my personal progress work
+	//if 'upload_work' is pressed
+	if(isset($_GET['upload_work'])){
+	
+		$_SESSION['todo_id']=$_GET['upload_work'];		
+					
+		header("Location:Upload_WorkPHP.php");
+		exit;	
+	}
+
+
+
 
 ?>
 
@@ -71,6 +85,7 @@ $result = mysqli_query($conn, $sql);
 	<th>Nr.</th>
 	<th>Tiltle</th>
 	<th>Date</th>
+	<th>Upload my work</th>
 </tr>
 
 
@@ -82,7 +97,7 @@ $result = mysqli_query($conn, $sql);
 	<td><?php echo $i; ?></td>
 	<td><?php echo $row["title"]; ?></td>
 	<td><?php echo $row["date"]; ?></td>
-	
+	<td><a href="Group_todosPHP.php?upload_work=<?php echo $row['id']; ?>">Upload</a></td>
 
 </tr>
 

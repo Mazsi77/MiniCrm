@@ -59,6 +59,23 @@ $result = mysqli_query($conn, $sql);
 			
 	}
 		
+		
+		
+		
+	//leave the group
+	//if 'leave_group' is pressed
+	if(isset($_GET['leave_group'])){
+	
+		$group_id = $_GET['leave_group'];
+		
+		mysqli_query($conn,"DELETE FROM members WHERE members.group_id='$group_id' AND members.user_id='$resultstring'");
+		mysqli_query($conn,"DELETE FROM group_administrators WHERE groups_id='$group_id' AND users_id='$resultstring'");
+	
+		header("Location:GroupsPHP.php");
+				
+	}
+		
+		
 	
 ?>
 
@@ -106,6 +123,7 @@ $result = mysqli_query($conn, $sql);
 	<th>Group name</th>
 	<th>The todo's in the group</th>
 	<th>The members in the group</th>
+	<th>Leave the group</th>
 </tr>
 
 
@@ -118,6 +136,7 @@ $result = mysqli_query($conn, $sql);
 	<td><?php echo $row["name"]; ?></td>
 	<td><a href="GroupsPHP.php?show_todos=<?php echo $row['id']; ?>">Let's see</a></td>
 	<td><a href="GroupsPHP.php?show_members=<?php echo $row['id']; ?>">Show it</a></td>
+	<td><a href="GroupsPHP.php?leave_group=<?php echo $row['id']; ?>">Leave</a></td>
 
 </tr>
 
