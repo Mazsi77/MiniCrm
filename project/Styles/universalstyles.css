@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&family=Volkhov:ital,wght@0,700;1,400&display=swap');
+
+body, html{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    line-height: 150%;
+}
+
+ *{
+     box-sizing: border-box;
+ }
+
+ .logo{
+    font-family: 'Volkhov', serif;
+    color: white;
+    font-size: 1.8rem;
+ }
+ .sideMenu {
+    background-color: #101C29;
+    color: white;
+}
+ .logo span{
+     color: #F9B403;
+     font-weight: bold;
+     font-size: 2rem;
+ }
+
+
