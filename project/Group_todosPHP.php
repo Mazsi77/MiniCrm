@@ -16,7 +16,7 @@ if(!$conn){
 }
 
 
-$sql = "SELECT group_todos.id, group_todos.title, group_todos.date FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
+$sql = "SELECT group_todos.id, group_todos.title, group_todos.description, group_todos.date FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
 
 
 //make query ang get result
@@ -84,6 +84,7 @@ $result = mysqli_query($conn, $sql);
 <tr>
 	<th>Nr.</th>
 	<th>Tiltle</th>
+	<th>Description</th>
 	<th>Date</th>
 	<th>Upload my work</th>
 </tr>
@@ -96,6 +97,7 @@ $result = mysqli_query($conn, $sql);
 <tr>
 	<td><?php echo $i; ?></td>
 	<td><?php echo $row["title"]; ?></td>
+	<td><?php echo $row["description"]; ?></td>
 	<td><?php echo $row["date"]; ?></td>
 	<td><a href="Group_todosPHP.php?upload_work=<?php echo $row['id']; ?>">Upload</a></td>
 

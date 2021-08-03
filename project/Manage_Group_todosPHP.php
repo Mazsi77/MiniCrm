@@ -16,7 +16,7 @@
 	}
 
 		
-	$sql = "SELECT group_todos.id, group_todos.title, group_todos.date FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
+	$sql = "SELECT group_todos.id, group_todos.title, group_todos.description, group_todos.date FROM group_todos INNER JOIN groups ON groups.id=group_todos.group_id WHERE groups.id='$groupID'";
 	
 
 	//make query ang get result
@@ -34,10 +34,11 @@
 if(isset($_POST['new_todo'])){
 	
 	$todo_title = $_POST['todo_title'];
+	$todo_description = $_POST['todo_description'];
 		
 	$group_id=$_SESSION['group_id'];
 				
-	mysqli_query($conn,"INSERT INTO group_todos (group_id,title) VALUES ('$group_id','$todo_title')");
+	mysqli_query($conn,"INSERT INTO group_todos (group_id, title, description) VALUES ('$group_id', '$todo_title', '$todo_description')");
 						
 	header("Location:Manage_Group_todosPHP.php");
 	exit;
@@ -125,6 +126,7 @@ if(isset($_GET['member_works'])){
 <tr>
 	<th>Nr.</th>
 	<th>Tiltle</th>
+	<th>Description</th>
 	<th>Date</th>
 	<th>Open the member works</th>
 	<th>Delete todo</th>
@@ -138,6 +140,7 @@ if(isset($_GET['member_works'])){
 <tr>
 	<td><?php echo $i; ?></td>
 	<td><?php echo $row["title"]; ?></td>
+	<td><?php echo $row["description"]; ?></td>
 	<td><?php echo $row["date"]; ?></td>
 	<td><a href="Manage_Group_todosPHP.php?member_works=<?php echo $row['id']; ?>">Open</a></td>
 	<td><a href="Manage_Group_todosPHP.php?del_task=<?php echo $row['id']; ?>">X</a></td>
@@ -159,6 +162,8 @@ if(isset($_GET['member_works'])){
 
 	<h3>Todo title:</h3>
 	<input type="text" name="todo_title">
+	<h3>Todo description:</h3>
+	<input type="text" name="todo_description">
 
 	<input type="submit" name="new_todo" value="Create a new todo">
 
