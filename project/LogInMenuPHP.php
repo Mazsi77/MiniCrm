@@ -23,7 +23,7 @@ if(!$conn){
 
 
 //writing a query for all pizzzas
-$sql = "SELECT todos.id, todos.title, todos.date FROM todos INNER JOIN users ON users.id=todos.user_id WHERE users.username='$uu' AND users.password='$pp'";
+$sql = "SELECT todos.id, todos.title, todos.description, todos.date FROM todos INNER JOIN users ON users.id=todos.user_id WHERE users.username='$uu' AND users.password='$pp'";
 
 //make query ang get result
 $result = mysqli_query($conn, $sql);
@@ -51,7 +51,7 @@ $result = mysqli_query($conn, $sql);
 if(isset($_POST['submit2'])){
 	
 	$title = $_POST['title'];
-	
+	$description = $_POST['description'];
 	
 	
 	// Converting MySQL query result to String
@@ -63,7 +63,7 @@ if(isset($_POST['submit2'])){
 
 	
 
-	if(mysqli_query($conn,"INSERT INTO todos (title,user_id) VALUES ('$title','$resultstring')")){
+	if(mysqli_query($conn,"INSERT INTO todos (title, user_id, description) VALUES ('$title','$resultstring','$description')")){
 		
 		// to prevent to go back in the page, and the page would be re-updated with the old value.
 		header("Location: LogInMenuPHP.php");
@@ -192,19 +192,21 @@ if(isset($_POST['submit2'])){
 				color: #647CAB;
 			}
 			.tittle{
+				margin-top: 1.3em;
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
 				align-items: center;
 				margin-bottom: 2rem;
 			}
-			.tittle a{
+			.content input[type=button], .content input[type=submit]{
 				text-decoration: none;
 				color: black;
 				background-color: #F9B403;
-				padding: 0.5em 1.5em;
+				border: none;
+				padding: 0.5rem 1.5rem;
 				font-family: 'Cairo', sans-serif;
-				font-size: 1.4rem;
+				font-size: 1.2rem;
 				font-weight: 600;
 				border-radius: 10px;
 			}
@@ -218,7 +220,7 @@ if(isset($_POST['submit2'])){
 				background-color: #B8C0CF;
 				padding: 1rem;
 				border-radius: 20px;
-				border-top: 5px solid #B012A1;
+				border-top: 5px solid #F9B403;
 				margin: 1.3rem 0;
 				font-size: 1rem;
 			}
@@ -234,7 +236,7 @@ if(isset($_POST['submit2'])){
 			.card a{
 				text-decoration: none;
 				color: white;
-				background-color: red;
+				background-color: #101C29;
 				padding: .5em 1.5em;
 				border-radius: 10px;
 			}
@@ -254,6 +256,21 @@ if(isset($_POST['submit2'])){
 			}
 			.hidden{
 				display: none;
+			}
+			form{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 1.2rem;
+			}
+			form input[type=text]{
+				width: 30%;
+				border: none;
+				padding: .5em 1em;
+				font-size: 1.3rem;
+				border-radius: 10px;
+				border-bottom: #F9B403 3px solid;
 			}
 		</style>
 		<script
@@ -284,7 +301,7 @@ if(isset($_POST['submit2'])){
 			<h3>Groups</h3>
 			<ul>
 				<li>
-					<a href="Group_todosPHP.php">To Do</a>
+					<a href="GroupsMenu.html">To Do</a>
 				</li>
 				<li>
 					<a href="#">Members</a></li>
@@ -298,10 +315,10 @@ if(isset($_POST['submit2'])){
 				<a href="#">Add New</a>
 			</header>
 			<section class="content">
-				<div class="switch">
+				<!-- <div class="switch">
 					<a href="#">Active</a>
 					<a href="#">Completed</a>
-				</div>
+				</div> -->
 
 				<div class="tittle">
 					<h2>Personal Todo's</h2>
@@ -309,7 +326,10 @@ if(isset($_POST['submit2'])){
 				</div>
 				<form id="addTodo" class="hidden" action="LogInMenuPHP.php" method="post">
 					<label for="title">Title</label>
-					<input type="text" name="title">
+					<input type="text" name="title" required>
+					<br><br>
+					<label for="description">Description</label>
+					<input type="text" name="description" required>
 					<input type="submit" value="Add todo" name="submit2">
 				</form>
 				<div class="todos">
@@ -320,7 +340,7 @@ if(isset($_POST['submit2'])){
 				while ($row=mysqli_fetch_array($result)) { ?>
 				<div class="card">
 					<h2><?php echo $row["title"]; ?></h2>
-					<p>Lorem ipsum dolor sit amet.</p>
+					<p><?php echo $row["description"]; ?></p>
 					<a href="LogInMenuPHP.php?del_task=<?php echo $row['id']; ?>">Delete</a>
 					<hr>
 					<div class="details">
@@ -348,7 +368,10 @@ if(isset($_POST['submit2'])){
 	-->
 	<script>
 			$("#formToggle").click(function()	{
-				$("#addTodo").toggleClass("hidden")})
+				if(! $("#addTodo").hasClass("hidden")) $(this).prop('value', 'New To Do')
+				else $(this).prop('value', 'Cancel');
+				$("#addTodo").toggleClass("hidden")});
+
 	</script>
 	</body>
 </html>
