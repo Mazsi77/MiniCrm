@@ -6,8 +6,7 @@
         <h1>Please Log in first</h1>
         
     <?php else : ?>
-    
-      
+          
          <h1>Your Opportunities</h1>
 
         <?php if (count($data) > 0): ?>
