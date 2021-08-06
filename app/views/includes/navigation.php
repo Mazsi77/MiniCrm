@@ -8,8 +8,15 @@
           <a class="nav-link" href="<?php echo URLROOT; ?>/leads/displayLeads">Leads </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/tasks">Tasks</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/tasks">Opportunities</a>
         </li>
+        <?php if(isset($_SESSION['roll'])) :
+            if($_SESSION['roll']=='Manager') :
+          ?>
+        <li class="nav-item ">
+          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/dashboard">Dashboard</a>
+        </li>
+        <?php endif; endif; ?>
         <li class="nav-item ">
         <?php if(isset($_SESSION['user_id'])) : ?>
                 <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout" >Logout</a>
@@ -17,6 +24,7 @@
                 <a class="nav-link" href="<?php echo URLROOT; ?>/users/login" >Log in</a>
             <?php endif; ?>
         </li>
+        
       </ul>
     </div>
 </nav>

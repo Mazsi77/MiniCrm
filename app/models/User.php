@@ -7,12 +7,14 @@
         }
 
         public function register($data){
-            $this->db->query('INSERT INTO users (username, email, password) VALUES(:username, :email, :password)');
+            $this->db->query('INSERT INTO users (username, password, telephone, email, dateofbirth) VALUES(:username, :password, :telephone, :email, :dateofbirth)');
 
             //Bind values
             $this->db->bind(':username', $data['username']);
-            $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
+            $this->db->bind(':telephone', $data['telephone']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':dateofbirth', $data['dateofbirth']);
 
             //Execute function
             if($this->db->execute()){
@@ -35,12 +37,15 @@
                 return false;
             }
         }
-        public function findUserByEmail($email){
+        //function for checking if there's already a user registered by a column name for ex: username, email
+        public function findUserByCol($col, $data){
             //prepared
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT * FROM users WHERE ' . $col .' = :' . $col);
 
             //Email param will be bindend with the email var
-            $this->db->bind(":email", $email);
+            $this->db->bind(':' . $col, $data);
+
+            $this->db->execute();
 
             //Check if email is alrady taken
             if($this->db->rowCount()>0){

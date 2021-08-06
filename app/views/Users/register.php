@@ -20,6 +20,14 @@
             <span class="invalidFeedBack">
                 <?php echo $data['emailError']; ?>
             </span>
+            <input type="tel" placeholder="Telephone *" name="telephone">
+            <span class="invalidFeedBack">
+                <?php echo $data['telephoneError']; ?>
+            </span>
+            <input type="date" name="dateofbirth" max="<?php echo date('Y-m-d') ?>">
+            <span class="invalidFeedBack">
+                <?php echo $data['dateError']; ?>
+            </span>
             <input type="password" placeholder="Password *" name="password">
             <span class="invalidFeedBack">
                 <?php echo $data['passwordError']; ?>

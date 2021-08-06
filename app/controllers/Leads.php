@@ -7,6 +7,14 @@ class Leads extends Controller{
     }
 
     public function displayLeads(){
-        $this->view('leads/displayLeads');
+        //only display leads if signed in
+        if(!isset($_SESSION['user_id'])){
+            $this->view('leads/displayLeads');
+        }
+        else{
+            $data= $this->leadModel->getLeads();
+
+            $this->view('leads/displayLeads', $data);
+        }
     }
 }

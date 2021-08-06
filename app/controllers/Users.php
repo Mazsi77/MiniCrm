@@ -9,10 +9,14 @@ class Users extends Controller{
         $data =[
             'username' => '',
             'email' => '',
+            'telephone' => '',
+            'dateofbirth' => '',
             'password' => '',
             'confirmPassword' => '',
             'emailError' => '',
             'usernameError' => '',
+            'telephoneError' => '',
+            'dateError' => '',
             'passwordError' => '',
             'confirmPasswordError' => ''
         ];
@@ -24,10 +28,14 @@ class Users extends Controller{
             $data =[
                 'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
+                'telephone' =>trim($_POST['telephone']),
+                'dateofbirth' => trim($_POST['dateofbirth']),
                 'password' => trim($_POST['password']),
                 'confirmPassword' => trim($_POST['confirmPassword']),
                 'emailError' => '',
                 'usernameError' => '',
+                'telephoneError' => '',
+                'dateError' => '',
                 'passwordError' => '',
                 'confirmPasswordError' => ''
             ];
@@ -39,6 +47,8 @@ class Users extends Controller{
                 $data['usernameError'] = 'Please enter username';
             }elseif (!preg_match($nameValidation, $data['username'])){
                 $data['usernameError']= 'Name can only contain letters and numbers.';
+            }elseif($this->userModel->findUserByCol('username', $data['username'])){
+                $data['usernameError']= 'Username Already taken';
             }
 
             //validate email
@@ -46,7 +56,7 @@ class Users extends Controller{
                 $data['emailError'] = 'Please enter email';
             }elseif(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
                 $data['emailError'] = 'Please enter the correct format';
-            }elseif($this->userModel->findUserByEmail($data['email'])){
+            }elseif($this->userModel->findUserByCol('email' , $data['email'])){
                 //check if emai exists.
                     $data['emailError'] = 'Email is already taken.';
                 }
@@ -67,9 +77,31 @@ class Users extends Controller{
                 }
             }
 
+            //Validate phone number based on number of numeric charracters
+            if(empty($data['telephone'])){
+                $data['telephoneError'] = 'Please enter a telephone number';
+            }else{
+                //eliminate every char except 0-9
+                $justNums = preg_replace("/[^0-9]/", '', $data['telephone']);
+
+                //eliminate leading 4 if its there
+                if (strlen($justNums) == 11) $justNums = preg_replace("/^4/", '',$justNums);
+
+                //if we have 10 digits left, it's probably valid.
+                if (strlen($justNums) != 10) {
+                    $data['telephoneError'] = 'Please ente a valid telephone number';
+                }
+            }
+
+            //Check if birth date is empty
+            if(empty($data['dateofbirth'])){
+                $data['dateError']= 'Please enter your birth date';
+            }
+
+
             //Make sure that errors are empty
 
-            if(empty($data['usernameError']) &&  empty($data['emailError']) && empty($data['passwordError'] && empty($data['confirmPasswordError'])))  {
+            if(empty($data['usernameError']) &&  empty($data['emailError']) && empty($data['passwordError'] && empty($data['confirmPasswordError']) && empty($data['dateError'] && empty($data['telephoneError']))))  {
                 //Hash password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -152,5 +184,6 @@ class Users extends Controller{
         $_SESSION['user_id']= $user->id;
         $_SESSION['username']= $user->username;
         $_SESSION['email']= $user->email;
+        $_SESSION['roll'] = $user->type;
     }
 }
