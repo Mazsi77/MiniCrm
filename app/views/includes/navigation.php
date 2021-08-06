@@ -5,7 +5,7 @@
     <div class="collapse navbar-collapse bg-light" id="collapsibleNavId">
       <ul class="navbar-nav me-auto mt-2 mt-lg-0">
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/leads">Leads </a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/leads/displayLeads">Leads </a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="<?php echo URLROOT; ?>/pages/tasks">Tasks</a>

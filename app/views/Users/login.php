@@ -4,10 +4,10 @@
 
     <?php require APPROOT . '/views/includes/navigation.php';
     ?>
-<section class="ftco-section">
+<section class="ftco-section" >
 		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12 col-lg-10">
+			<div class="row">
+				<div class="col-md-12 col-lg-10 ">
 					<div class="wrap d-md-flex">
 						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
 							<div class="text w-100">

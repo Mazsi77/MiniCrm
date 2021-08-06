@@ -120,6 +120,7 @@ class Users extends Controller{
                 
                 if($loggedInUser){
                     $this->createUserSession($loggedInUser);
+                    header('location: ' . URLROOT . '/index');
                 }else{
                     $data['passwordError'] = 'Password or username is incorect.';
 
