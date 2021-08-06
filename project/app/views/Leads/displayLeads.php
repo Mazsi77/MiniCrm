@@ -4,8 +4,11 @@
 
     if(!isset($_SESSION['user_id'])) : ?>
         <h1>Please Log in first</h1>
+        
     <?php else : ?>
-        <h1>Your Leads</h1>
+    
+      
+         <h1>Your Leads</h1>
 
         <?php if (count($data) > 0): ?>
             <table class="table table-hovrt table-inverse table-responsive">
@@ -27,6 +30,7 @@
                     </tbody>
             </table>
             
+       
 <?php endif; ?>
 
 <?php 
