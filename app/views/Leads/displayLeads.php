@@ -6,11 +6,52 @@
         <h1>Please Log in first</h1>
     <?php else : ?>
         <h1>Your Leads</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLead">
+        Add new lead
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="newLead" tabindex="-1" aria-labelledby="newLeadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newLeadLabel">New Lead</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <form action="<?php echo URLROOT; ?>/leads/newLead" method="POST"> 
+                      <div class="mb-3 row">
+                          <label for="name" class="col-sm-1-12 col-form-label"></label>
+                          <div class="col-sm-1-12">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                          </div>
+                      </div>
+                      <div class="mb-3 row">
+                          <label for="email" class="col-sm-1-12 col-form-label"></label>
+                          <div class="col-sm-1-12">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                          </div>
+                      </div>
+                      <div class="mb-3 row">
+                          <label for="telephone" class="col-sm-1-12 col-form-label"></label>
+                          <div class="col-sm-1-12">
+                              <input type="tel" class="form-control" name="telephone" id="telephone" placeholder="Telephone">
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Action</button>
+                  </form>
+              </div>
+            </div>
+            </div>
+        </div>
+        </div>
         <?php if (count($data) > 0): ?>
-            <table class="table table-hovrt table-inverse table-responsive">
+            <table class="table table-hover table-borderless table-responsive">
                 <thead class="thead-inverse">
                     <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>telephone</th>

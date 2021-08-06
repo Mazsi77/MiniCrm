@@ -15,12 +15,12 @@ class Lead{
     }
 
     public function addLead($data){
-        $this->db->query('INSERT INTO leads(name, email, telephone) VALUES(:name, :email, :telephone');
+        $this->db->query('INSERT INTO leads(name, email, telephone) VALUES(:name, :email, :telephone)');
 
 
-        $this->db-bind(":name", $data['name']);
-        $this->db-bind(":email", $data['email']);
-        $this->db-bind(":telephone", $data['telephone']);
+        $this->db->bind(":name", $data['name']);
+        $this->db->bind(":email", $data['email']);
+        $this->db->bind(":telephone", $data['telephone']);
 
         if($this->db->execute()){
             return true;
