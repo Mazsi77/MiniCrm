@@ -8,7 +8,7 @@
           <a class="nav-link" href="<?php echo URLROOT; ?>/leads/displayLeads">Leads </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/pages/tasks">Opportunities</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/opportunitys/displayOpportunities">Opportunities</a>
         </li>
         <?php if(isset($_SESSION['roll'])) :
             if($_SESSION['roll']=='Manager') :
