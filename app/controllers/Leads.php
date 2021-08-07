@@ -43,4 +43,19 @@ class Leads extends Controller{
             }
         }
     }
+
+    public function deleteLead(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $id=trim($_POST['leadsId']);
+
+            if($this->leadModel->deleteLead($id)){
+                header('location: ' . URLROOT . '/leads/displayLeads');
+            }
+            else{
+                $this->displayLeads();
+            }
+        }
+    }
 }

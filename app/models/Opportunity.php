@@ -7,7 +7,7 @@ class Opportunity{
     }
 
     public function getOpportunities(){
-        $this->db->query('SELECT * FROM opportunities');
+        $this->db->query('SELECT *, opportunities.name AS opname FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id');
 
         $result = $this->db->resultSet();
 

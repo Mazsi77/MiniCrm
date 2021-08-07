@@ -31,4 +31,11 @@ class Lead{
     public function updateLead(){
         ///need's to be deeloped
     }
+    public function deleteLead($id){
+        $this->db->query('DELETE FROM leads WHERE leads.id = :id');
+
+        $this->db->bind(":id", $id);
+
+        return $this->db->execute();
+    }
 }
