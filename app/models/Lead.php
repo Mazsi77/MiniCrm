@@ -46,4 +46,15 @@ class Lead{
 
         return $this->db->single();
     }
+
+    public function editLead($data){
+        $this->db->query('UPDATE leads SET name = :name, email = :email, telephone = :telephone WHERE id = :id');
+
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':telephone', $data['telephone']);
+        $this->db->bind(':id', $data['id']);
+
+        return $this->db->execute();
+    }
 }

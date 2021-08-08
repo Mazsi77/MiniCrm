@@ -72,6 +72,20 @@ class Leads extends Controller{
     }
 
     public function editLead(){
-        
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data=[
+                'id' => trim($_POST['leadsId']),
+                'name' => trim($_POST['name']),
+                'email'=>trim($_POST['email']),
+                'telephone' =>trim($_POST['telephone'])
+            ];
+
+            if($this->leadModel->editLead($data)){
+                header('location: ' . URLROOT . '/leads/displayLeads');
+            }
+            
+        }
     }
 }
