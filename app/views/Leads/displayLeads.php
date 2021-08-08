@@ -62,6 +62,11 @@
             <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
                 <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
+                <td> <form action="<?php echo URLROOT . '/leads/editLeadContr'?>" method="post">
+                        <input type = "hidden" name = "leadsId" value = "<?php echo $row['id']; ?>" />
+                        <button type="submit" class="btn btn-outline">Edit</button>
+                    </form>
+                </td>
                 <td> <form action="<?php echo URLROOT . '/leads/deleteLead'?>" method="post">
                         <input type = "hidden" name = "leadsId" value = "<?php echo $row['id']; ?>" />
                         <button type="submit" class="btn btn-danger">Delete</button>

@@ -58,4 +58,20 @@ class Leads extends Controller{
             }
         }
     }
+
+    public function editLeadContr(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $id = trim($_POST['leadsId']);
+
+            $data= $this->leadModel->getLeadById($id);
+
+            $this->view('leads/editLeads', $data);
+        }
+    }
+
+    public function editLead(){
+        
+    }
 }

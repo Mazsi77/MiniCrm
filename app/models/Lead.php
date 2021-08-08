@@ -38,4 +38,12 @@ class Lead{
 
         return $this->db->execute();
     }
+
+    public function getLeadById($id){
+        $this->db->query('SELECT * FROM leads WHERE leads.id = :id');
+
+        $this->db->bind(":id", $id);
+
+        return $this->db->single();
+    }
 }
