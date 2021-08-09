@@ -76,10 +76,12 @@
             <table class="table table-hovrt table-inverse table-responsive">
                 <thead class="thead-inverse">
                     <tr>
-                     <th>id</th>
-                    <th>Lead id</th>
-                    <th>Stage id</th>
-                    <th>Name</th>
+                  
+                 	<th>Opportunity Name</th>
+                    <th>Lead Name</th>
+                    <th>Stage Name</th>
+                    <th>Finished</th>
+                    <th>Won</th>             
                     <th>Amount</th>
                     <th>Probability</th>
                     <th>Close date</th>
@@ -89,7 +91,22 @@
                     <tbody>
             <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
                 <tr>
-                <td><?php echo implode('</td><td>', $row); ?></td>
+                <td><?php echo $row["opname"]; ?></td>
+             	<td><?php echo $row["lead_name"]; ?></td>
+             	<td><?php echo $row["stage_name"]; ?></td>
+             	<td><?php echo $row["is_finished"]; ?></td>
+             	<td><?php echo $row["is_won"]; ?></td>
+       			<td><?php echo $row["amount"]; ?></td>
+				<td><?php echo $row["prob"]; ?></td>
+				<td><?php echo $row["close_date"]; ?></td>
+				<td><?php echo $row["opid"]; ?></td>
+                                
+                <td> <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post">
+                        <input type = "hidden" name = "opportunitysId" value = "<?php echo $row['opid']; ?>" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+                                
                 </tr>
             <?php endforeach; ?>
             </tbody>

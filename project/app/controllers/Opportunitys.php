@@ -52,5 +52,26 @@ class Opportunitys extends Controller{
     }
     
     
+    public function deleteOpportunity(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $opid=trim($_POST['opportunitysId']);
+            
+            if($this->opportunityModel->deleteOpportunity($opid)){
+                header('location: ' . URLROOT . '/opportunitys/displayOpportunities');
+            }
+            else{
+                $this->displayOpportunities();
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }
