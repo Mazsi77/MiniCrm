@@ -7,7 +7,11 @@ class Opportunity{
     }
 
     public function getOpportunities(){
-        $this->db->query('SELECT *, opportunities.name AS opname, opportunities.id AS opid, leads.name AS lead_name, stages.name AS stage_name FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id INNER JOIN stages ON stages.id=opportunities.stage_id');
+<<<<<<< HEAD:project/app/models/Opportunity.php
+        $this->db->query('SELECT opportunities.*, leads.name AS lead_name FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id');
+=======
+        $this->db->query('SELECT *, opportunities.name AS opname FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id');
+>>>>>>> 75bd30979294471d45b284d0625e61bae29a6c8d:app/models/Opportunity.php
 
         $result = $this->db->resultSet();
 
@@ -15,7 +19,11 @@ class Opportunity{
     }
 
     public function addOpportunity($data){
+<<<<<<< HEAD:project/app/models/Opportunity.php
+        $this->db->query('INSERT INTO opportunities(lead_id, stage_id, name,amount,prob,close-date) VALUES(:lead_id, :stage_id,:name,:amount,:prob, :close-date');
+=======
         $this->db->query('INSERT INTO opportunities(lead_id, stage_id, name, amount, prob, close_date) VALUES(:lead_id, :stage_id,:name, :amount, :prob, :close_date)');
+>>>>>>> 75bd30979294471d45b284d0625e61bae29a6c8d:app/models/Opportunity.php
 
 
         $this->db->bind(":lead_id", $data['lead_id']);
@@ -30,15 +38,11 @@ class Opportunity{
         }
         return false;
     }
-    
-    public function deleteOpportunity($opid){
-        $this->db->query('DELETE FROM opportunities WHERE opportunities.id = :opid');
-        
-        $this->db->bind(":opid", $opid);
-        
-        return $this->db->execute();
-    }
 
+  
+    
+    
+    
     public function updateOpportunities(){
         ///need's to be deeloped
     }

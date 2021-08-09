@@ -76,8 +76,10 @@
             <table class="table table-hovrt table-inverse table-responsive">
                 <thead class="thead-inverse">
                     <tr>
-                    <th>Lead Name</th>
-                    <th>Opportinity Name</th>
+                     <th>id</th>
+                    <th>Lead id</th>
+                    <th>Stage id</th>
+                    <th>Name</th>
                     <th>Amount</th>
                     <th>Probability</th>
                     <th>Close date</th>
@@ -85,11 +87,11 @@
                     </thead>
                     <tbody>
                     <tbody>
-            <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); 
-                
-                 echo "<tr><td>" . $row["lead_name"] . "</td><td>" . $row["name"] . "</td><td>" . $row["amount"] . "</td><td>"  . $row["prob"] . "</td><td>"  . $row["close_date"] . "</td></tr>";
-                
-             endforeach; ?>
+            <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
+                <tr>
+                <td><?php echo implode('</td><td>', $row); ?></td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
                     </tbody>
             </table>

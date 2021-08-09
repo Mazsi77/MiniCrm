@@ -43,6 +43,29 @@ class Leads extends Controller{
             }
         }
     }
+<<<<<<< HEAD:project/app/controllers/Leads.php
+    
+    
+    public function removeLead(){
+        $form = [
+            'id' => '' 
+        ];
+        
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $form = [
+              
+                'id' => trim($_POST['id'])
+            ];
+            
+            if(!(empty($form['id']))){
+                if($this->leadModel->deleteLead($form)){
+                    header('location: ' . URLROOT . '/leads/displayLeads');
+                }
+            }else{
+                $this->displayLeads();
+=======
 
     public function deleteLead(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -84,8 +107,18 @@ class Leads extends Controller{
 
             if($this->leadModel->editLead($data)){
                 header('location: ' . URLROOT . '/leads/displayLeads');
+>>>>>>> 75bd30979294471d45b284d0625e61bae29a6c8d:app/controllers/Leads.php
             }
             
         }
     }
+<<<<<<< HEAD:project/app/controllers/Leads.php
+    
+    
+    
+    
+    
+    
+=======
+>>>>>>> 75bd30979294471d45b284d0625e61bae29a6c8d:app/controllers/Leads.php
 }
