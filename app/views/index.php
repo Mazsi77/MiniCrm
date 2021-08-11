@@ -13,8 +13,7 @@ foreach ($data['users'] as $user) {
     <?php require APPROOT . '/views/includes/navigation.php';
     ?>
     <div class="wrapper-landing">
-    <h1>One man's crappy software</h1>
-    <h2>Is another man's shit.</h2>
+    <h1 >Future landing page</h1>
     </div>
 </div>
 
