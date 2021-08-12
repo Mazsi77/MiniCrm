@@ -9,7 +9,7 @@
         }
 
         //Load the view (checks for the file)
-        public function view($view, $data = []) {
+        public function view($view, $data = [],$datas = [],$data1 = [],$data2 = [],$data3 = [],$data4 = [],$data5 = [],$data6 = [],$data7 = [],$data8 = []) {
             if (file_exists('../app/views/' . $view . '.php')) {
                 require_once '../app/views/' . $view . '.php';
             } else {
