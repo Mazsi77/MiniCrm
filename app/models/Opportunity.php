@@ -6,9 +6,17 @@ class Opportunity{
         $this->db = new Database;
     }
 
-    public function getOpportunities(){
+    public function getOpportunitiesWithDependecy(){
         $this->db->query('SELECT *, opportunities.name AS opname, opportunities.id AS opid, leads.name AS lead_name, stages.name AS stage_name FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id INNER JOIN stages ON stages.id=opportunities.stage_id');
 
+        $result = $this->db->resultSet();
+
+        return $result;
+    }
+
+    public function getOpportunities(){
+        $this->db->query('SELECT *, opportunities.name AS opname, opportunities.id AS opid, leads.name AS lead_name, leads.id AS lead_id FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id');
+        
         $result = $this->db->resultSet();
 
         return $result;
