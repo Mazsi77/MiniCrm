@@ -15,7 +15,7 @@ class Dashboard{
     }
 	
 	public function getAvgProb(){
-        $this->db->query('SELECT AVG(prob) FROM opportunities');
+        $this->db->query('SELECT ROUND(AVG(prob)) FROM opportunities');
 
         $result = $this->db->resultSet();
 
@@ -322,6 +322,28 @@ class Dashboard{
         
         return $result;
     }
+    
+    
+    
+    public function getAvgAmount(){
+        $this->db->query('SELECT ROUND(AVG(amount)) FROM opportunities');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    
+    
+    public function getTopLeads(){
+        $this->db->query('SELECT COUNT(opportunities.id), leads.name FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id GROUP BY leads.name ORDER BY COUNT(opportunities.id) DESC');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    
+    
+    
     
     
     

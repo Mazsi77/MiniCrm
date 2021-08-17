@@ -20,6 +20,7 @@ class Dashboards extends Controller{
 			$data4= $this->dashboardModel->getCountNegotiation();
 			$data5= $this->dashboardModel->getCountFinished();
 			$data6= $this->dashboardModel->getCountNotFinished();
+			
 			$janWon= $this->dashboardModel->getjanWon();
 		    $janLost= $this->dashboardModel->getjanLost();
 			$janPros= $this->dashboardModel->getjanPros();
@@ -57,9 +58,11 @@ class Dashboards extends Controller{
 			$sepPros= $this->dashboardModel->getsepPros();
 			$sepNeg= $this->dashboardModel->getsepNeg();
 			
+			$avgAmount= $this->dashboardModel->getAvgAmount();
+			$topLeads= $this->dashboardModel->getTopLeads();
 					
 			
-			$this->view('dashboards/displayDashboards', $data, $datas, $data1, $data2, $data3, $data4, $data5, $data6, $janWon, $janLost, $janPros, $janNeg,$febWon, $febLost, $febPros, $febNeg,$marWon, $marLost, $marPros, $marNeg,$aprWon, $aprLost, $aprPros, $aprNeg,$mayWon, $mayLost, $mayPros, $mayNeg,$junWon, $junLost, $junPros, $junNeg,$julWon, $julLost, $julPros, $julNeg,$augWon, $augLost, $augPros, $augNeg,$sepWon, $sepLost, $sepPros, $sepNeg);
+			$this->view('dashboards/displayDashboards', $data, $datas, $data1, $data2, $data3, $data4, $data5, $data6, $janWon, $janLost, $janPros, $janNeg,$febWon, $febLost, $febPros, $febNeg,$marWon, $marLost, $marPros, $marNeg,$aprWon, $aprLost, $aprPros, $aprNeg,$mayWon, $mayLost, $mayPros, $mayNeg,$junWon, $junLost, $junPros, $junNeg,$julWon, $julLost, $julPros, $julNeg,$augWon, $augLost, $augPros, $augNeg,$sepWon, $sepLost, $sepPros, $sepNeg,$avgAmount,$topLeads);
         }
     }
 

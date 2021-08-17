@@ -9,15 +9,20 @@
 		
 		
     <?php else : ?>
+    
+    <div class="row" style="text-align:center;">
+    <div class="w-95 mx-auto">
+    
+    
         <h1>Dashboard</h1>
         
         <br><br>
+        
 		
-		
-				
+
 				
 
-<canvas id="myChart" style="width:100%;max-width:600px; height:200px;"></canvas>
+<canvas id="myChart" style="width:100%;max-width:600px; height:400px;"></canvas>
  
  <?php foreach ($janWon as $JanWon): $JanWon= (array) $JanWon; array_map('htmlentities', $JanWon); ?> 
  <?php foreach ($janLost as $JanLost): $JanLost= (array) $JanLost; array_map('htmlentities', $JanLost); ?>
@@ -159,63 +164,17 @@ var myChart = new Chart(ctx, {
 
 
 
-
-		
 	
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 		
+          <br><br><br><br><br>
+          
        
-       
-	 
-	 <br><br><br><br><br>
-	 
-	 
-	 <canvas id="myChart2" style="width:100%;max-width:500px; height:500px;"></canvas>
-	 	 
-	
-            <?php foreach ($data5 as $row5): $row5= (array) $row5; array_map('htmlentities', $row5); ?>
-			 <?php foreach ($data6 as $row6): $row6= (array) $row6; array_map('htmlentities', $row6); ?>
-	 			
-	 
-	 <script>
-var xValues = ["Finished", "Not finished"];
-var yValues = [<?php echo $row5["COUNT(opportunities.id)"]; ?>, <?php echo $row6["COUNT(opportunities.id)"]; ?>, 0,];
-var barColors = ["green", "red"];
-
-new Chart("myChart2", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: "Finished opportunities"
-    }
-  }
-});
-</script>
-	 
-	 
-	 
-	  <?php endforeach; ?>
-	<?php endforeach; ?>
->
-	
-
-	   
-	   
-	   <br><br><br><br><br>
 	   
 	   <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
        
-       <?php if (count($data) > 0): ?>	  
+  
             <?php foreach ($data1 as $row1): $row1= (array) $row1; array_map('htmlentities', $row1); ?>
 			 <?php foreach ($data2 as $row2): $row2= (array) $row2; array_map('htmlentities', $row2); ?>
 			  <?php foreach ($data3 as $row3): $row3= (array) $row3; array_map('htmlentities', $row3); ?>
@@ -262,38 +221,148 @@ new Chart("myChart1", {
 			 <?php endforeach; ?>
 			<?php endforeach; ?>
   			
-		<?php endif; ?>
+	
+ 
+     
+   
+       
+       
+	 
+	 <br><br><br><br><br>
+	 
+	 
+	 <canvas id="myChart2" style="width:100%;max-width:500px; height:500px;"></canvas>
+	 	 
+	
+            <?php foreach ($data5 as $row5): $row5= (array) $row5; array_map('htmlentities', $row5); ?>
+			 <?php foreach ($data6 as $row6): $row6= (array) $row6; array_map('htmlentities', $row6); ?>
+	 			
+	 
+	 <script>
+var xValues = ["Finished", "Not finished"];
+var yValues = [<?php echo $row5["COUNT(opportunities.id)"]; ?>, <?php echo $row6["COUNT(opportunities.id)"]; ?>, 0,];
+var barColors = ["green", "red"];
+
+new Chart("myChart2", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Finished opportunities"
+    }
+  }
+});
+</script>
+	 
+	 
+	 
+	  <?php endforeach; ?>
+	<?php endforeach; ?>
+
+	
+
+	   
+	   
+	
 	   
 	   
 	   
+	    <br><br><br><br>
 	   
-	   
-        <?php if (count($data) > 0): ?>	  
+ 
             <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
-			
-			   <br><br><br><br>
+						  
                <h3>The Sum of all amounts:</h3>
                
                  <h2><?php echo "$ " . $row["SUM(amount)"]; ?></h2>
 				
             <?php endforeach; ?>
+                     
                         
-		<?php endif; ?>
-		
-		
-        <?php if (count($datas) > 0): ?>	  
-            <?php foreach ($datas as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
+                        
+		   <br><br><br><br>
+       
+            <?php foreach ($avgAmount as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
 			
-			   <br><br><br><br>
-               <h3>The Average of probabilities:</h3>
+			   <h3>The Average of all amounts:</h3>
                
-                <h2><?php echo $row["AVG(prob)"] . " %"; ?></h2>
+                <h2><?php echo "$ " . $row["ROUND(AVG(amount))"]; ?></h2>
 				
             <?php endforeach; ?>
-                        
-		<?php endif; ?>
-			
 				
+		
+		
+		
+		   <br><br><br><br>
+       
+            <?php foreach ($datas as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
+			
+			   <h3>The Average of probabilities:</h3>
+               
+                <h2><?php echo $row["ROUND(AVG(prob))"] . " %"; ?></h2>
+				
+            <?php endforeach; ?>
+            
+            
+            <br><br><br><br>
+            
+            
+             <?php foreach ($data1 as $row1): $row1= (array) $row1; array_map('htmlentities', $row1); ?>
+			  <?php foreach ($data2 as $row2): $row2= (array) $row2; array_map('htmlentities', $row2); ?>
+			
+			   <h3>Opportunities win rate:</h3>
+               
+                <h2><?php echo    round(($row1["COUNT(opportunities.id)"] / ($row1["COUNT(opportunities.id)"]+$row2["COUNT(opportunities.id)"] ))*100) ;    ?> %</h2>
+				
+            <?php endforeach; ?>
+            <?php endforeach; ?>
+            
+            
+            <br><br><br><br>
+            
+            
+            
+            <h3>Top leads by the number of opportunities:</h3>
+          
+          <div class="row justify-content-center">
+   			 <div class="col-auto">
+          
+                <table class="table table-hovrt table-inverse table-responsive">
+                <thead class="thead-inverse">
+                    <tr>
+                  
+                 	<th>Lead Name</th>
+                    <th>Number of opportunities</th>
+                    
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+            <?php foreach ($topLeads as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
+                <tr>
+                
+                <td><?php echo $row["name"]; ?></td>
+             	<td><?php echo $row["COUNT(opportunities.id)"]; ?></td>
+             	          
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+                    </tbody>
+            </table>        
+		
+			
+			</div>	
+			</div>	
+			</div>	
+			</div>	
 		
         
 
