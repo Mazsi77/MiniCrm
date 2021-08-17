@@ -326,6 +326,79 @@ new Chart("myChart2", {
             <?php endforeach; ?>
             
             
+            <br><br><br><br><br>
+            
+            
+      
+			  
+                        
+             <h3>New joined leads:</h3>
+            
+            
+            <canvas id="myChart4" style="width:100%;max-width:600px"></canvas>
+
+
+                         
+
+      
+      <?php foreach ($janLead as $row1): $row1= (array) $row1; array_map('htmlentities', $row1); ?>
+        <?php foreach ($febLead as $row2): $row2= (array) $row2; array_map('htmlentities', $row2); ?>
+          <?php foreach ($marLead as $row3): $row3= (array) $row3; array_map('htmlentities', $row3); ?>
+            <?php foreach ($aprLead as $row4): $row4= (array) $row4; array_map('htmlentities', $row4); ?>
+              <?php foreach ($mayLead as $row5): $row5= (array) $row5; array_map('htmlentities', $row5); ?>
+                <?php foreach ($junLead as $row6): $row6= (array) $row6; array_map('htmlentities', $row6); ?>
+                  <?php foreach ($julLead as $row7): $row7= (array) $row7; array_map('htmlentities', $row7); ?>
+                    <?php foreach ($augLead as $row8): $row8= (array) $row8; array_map('htmlentities', $row8); ?>
+                      <?php foreach ($sepLead as $row9): $row9= (array) $row9; array_map('htmlentities', $row9); ?>
+                        <?php foreach ($octLead as $row10): $row10= (array) $row10; array_map('htmlentities', $row10); ?>
+                          <?php foreach ($novLead as $row11): $row11= (array) $row11; array_map('htmlentities', $row11); ?>
+                           <?php foreach ($decLead as $row12): $row12= (array) $row12; array_map('htmlentities', $row12); ?>
+                          
+                          
+                           <script>
+var xValues = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var yValues = [<?php echo $row1["COUNT(leads.id)"]; ?>,<?php echo $row2["COUNT(leads.id)"]; ?>,<?php echo $row3["COUNT(leads.id)"]; ?>,<?php echo $row4["COUNT(leads.id)"]; ?>,<?php echo $row5["COUNT(leads.id)"]; ?>,<?php echo $row6["COUNT(leads.id)"]; ?>,<?php echo $row7["COUNT(leads.id)"]; ?>,<?php echo $row8["COUNT(leads.id)"]; ?>,<?php echo $row9["COUNT(leads.id)"]; ?>,<?php echo $row10["COUNT(leads.id)"]; ?>,<?php echo $row11["COUNT(leads.id)"]; ?>,<?php echo $row12["COUNT(leads.id)"]; ?>];
+
+new Chart("myChart4", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,0.8)",
+      borderColor: "rgba(0,0,255,0.5)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    
+  }
+});
+
+</script>
+                          
+             
+            
+            
+             <?php endforeach; ?>
+              <?php endforeach; ?>
+               <?php endforeach; ?>
+                <?php endforeach; ?>
+                 <?php endforeach; ?>
+                  <?php endforeach; ?>
+                   <?php endforeach; ?>
+                    <?php endforeach; ?>
+                     <?php endforeach; ?>
+                      <?php endforeach; ?>
+                       <?php endforeach; ?>
+                       <?php endforeach; ?>
+                       
+                       
+            
+            
+            
             <br><br><br><br>
             
             

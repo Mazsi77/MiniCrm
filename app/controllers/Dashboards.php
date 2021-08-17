@@ -61,8 +61,26 @@ class Dashboards extends Controller{
 			$avgAmount= $this->dashboardModel->getAvgAmount();
 			$topLeads= $this->dashboardModel->getTopLeads();
 					
+			$janLead=$this->dashboardModel->getJanLeads();
+			$febLead=$this->dashboardModel->getFebLeads();
+			$marLead=$this->dashboardModel->getMarLeads();
+			$aprLead=$this->dashboardModel->getAprLeads();
+			$mayLead=$this->dashboardModel->getMayLeads();
+			$junLead=$this->dashboardModel->getJunLeads();
+			$julLead=$this->dashboardModel->getJulLeads();
+			$augLead=$this->dashboardModel->getAugLeads();
+			$sepLead=$this->dashboardModel->getSepLeads();
+			$octLead=$this->dashboardModel->getOctLeads();
+			$novLead=$this->dashboardModel->getNovLeads();
+			$decLead=$this->dashboardModel->getDecLeads();
 			
-			$this->view('dashboards/displayDashboards', $data, $datas, $data1, $data2, $data3, $data4, $data5, $data6, $janWon, $janLost, $janPros, $janNeg,$febWon, $febLost, $febPros, $febNeg,$marWon, $marLost, $marPros, $marNeg,$aprWon, $aprLost, $aprPros, $aprNeg,$mayWon, $mayLost, $mayPros, $mayNeg,$junWon, $junLost, $junPros, $junNeg,$julWon, $julLost, $julPros, $julNeg,$augWon, $augLost, $augPros, $augNeg,$sepWon, $sepLost, $sepPros, $sepNeg,$avgAmount,$topLeads);
+			
+			
+			
+			
+			
+			
+			$this->view('dashboards/displayDashboards', $data, $datas, $data1, $data2, $data3, $data4, $data5, $data6, $janWon, $janLost, $janPros, $janNeg,$febWon, $febLost, $febPros, $febNeg,$marWon, $marLost, $marPros, $marNeg,$aprWon, $aprLost, $aprPros, $aprNeg,$mayWon, $mayLost, $mayPros, $mayNeg,$junWon, $junLost, $junPros, $junNeg,$julWon, $julLost, $julPros, $julNeg,$augWon, $augLost, $augPros, $augNeg,$sepWon, $sepLost, $sepPros, $sepNeg,$avgAmount,$topLeads,$janLead,$febLead,$marLead,$aprLead,$mayLead,$junLead,$julLead,$augLead,$sepLead,$octLead,$novLead,$decLead);
         }
     }
 

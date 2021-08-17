@@ -343,6 +343,92 @@ class Dashboard{
     }
     
     
+    public function getJanLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-01-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getFebLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-02-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getMarLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-03-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getAprLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-04-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getMayLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-05-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getJunLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-06-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getJulLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-07-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getAugLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-08-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getSepLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-09-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getOctLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-10-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getNovLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-11-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    public function getDecLeads(){
+        $this->db->query('SELECT COUNT(leads.id) FROM leads WHERE leads.join_date LIKE "2021-12-%"');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+    
+    
     
     
     

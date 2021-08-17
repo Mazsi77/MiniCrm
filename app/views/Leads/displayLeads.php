@@ -54,7 +54,8 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>telephone</th>
+                    <th>Telephone</th>
+                    <th>Joined</th>
                     </tr>
                     </thead>
                     <tbody>
