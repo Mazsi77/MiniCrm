@@ -8,6 +8,11 @@ class Leads extends Controller{
         
     }
 
+    public function getLeads(){
+        $result = $this->leadModel->getLeads();
+        return $result;
+    }
+
     public function displayLeads(){
         //only display leads if signed in
         if(!isset($_SESSION['user_id'])){
@@ -44,6 +49,14 @@ class Leads extends Controller{
                 $this->displayLeads();
             }
         }
+    }
+
+    public function addLead($form){
+        if(!(empty($form['name']) && empty($form['email']) && empty($form['telephone']))){
+           $id = $this->leadModel->addLeadGetId($form);
+           return $id;
+        } 
+        return -1;     
     }
 
     public function deleteLead(){

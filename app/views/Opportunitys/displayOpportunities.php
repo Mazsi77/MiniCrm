@@ -8,11 +8,12 @@
     <?php else : ?>
  
        <h1>Your Opportunities</h1>
-       
+
        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newOpportunity">
+        <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newOpportunity">
         Add new Opportunity
-        </button>
+        </button> -->
+        <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <a name="" id="" class="btn btn-light" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
         <!-- Modal -->
         <div class="modal fade" id="newOpportunity" tabindex="-1" aria-labelledby="newOpportunityLabel" aria-hidden="true">
@@ -102,6 +103,7 @@
                                 
                 <td> <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post">
                         <input type = "hidden" name = "opportunitysId" value = "<?php echo $row['opid']; ?>" />
+                        <input type="hidden" name="url" value="<?php echo URLROOT . '/opportunitys/displayOpportunities' ?>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>

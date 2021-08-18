@@ -9,6 +9,7 @@
  
        <h1>Your Opportunities</h1>
        <a name="" id="" class="btn btn-light" href="<?php echo URLROOT . '/Opportunitys/displayOpportunities' ?>" role="button">Change View</a>
+       <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <div class="row">
        <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
 
@@ -31,7 +32,11 @@
                         <p class="card-text"><?php echo $ops['telephone']; ?></p>
                         <p class="card-text"><?php echo $ops['email']; ?></p>
                     </div>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post">
+                        <input type = "hidden" name = "opportunitysId" value = "<?php echo $ops['opid']; ?>" >
+                        <input type = "hidden" name = "url" value = "<?php echo URLROOT . '/opportunitys/displayOpportunityCards'; ?>" >
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
                 <div class="card-footer text-muted">
                     <p>Due: <?php echo $ops['close_date'] ?></p>

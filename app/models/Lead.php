@@ -28,9 +28,6 @@ class Lead{
         return false;
     }
 
-    public function updateLead(){
-        ///need's to be deeloped
-    }
     public function deleteLead($id){
         $this->db->query('DELETE FROM leads WHERE leads.id = :id');
 
@@ -56,5 +53,13 @@ class Lead{
         $this->db->bind(':id', $data['id']);
 
         return $this->db->execute();
+    }
+
+    public function addLeadGetId($data){
+        if($this->addLead($data)){
+            return $this->db->lastInsert();
+        }
+        return -1;
+
     }
 }

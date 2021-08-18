@@ -15,4 +15,7 @@ class Stages extends Controller{
             return $stages;
         }
     }
+    public function addStage($data){
+        return $this->stageModel->addStageGetId($data);
+    }
 }

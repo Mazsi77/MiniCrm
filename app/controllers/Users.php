@@ -178,6 +178,7 @@ class Users extends Controller{
         unset($_SESSION['user_id']);
         unset($_SESSION['username']);
         unset($_SESSION['email']);
+        unset($_SESSION['roll']);
         header('location: '. URLROOT . '/users/login' );
     }
     public function createUserSession($user){
