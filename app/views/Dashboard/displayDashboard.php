@@ -7,6 +7,36 @@
         
 <?php else : ?>
     <h1>Dashboard</h1>
+    <div class="container">
+        <form id="stackedForm">
+            <h2>Chart settings</h2>
+            <div class="d-flex justify-content-between">
+                <div class="mb-3">
+                <label for="fromYear" class="form-label">From</label>
+                <input type="month" class="form-control" name="fromYear" id="fromYear" required>
+                </div>
+                <div class="mb-3">
+                <label for="toYear" class="form-label">To</label>
+                <input type="month" class="form-control" name="toYear" id="toYear" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                  <label for="selectedRow" class="form-label">Data</label>
+                  <select class="form-control" name="selectedRow" id="selectedRow">
+                    <option value="close_date" selected>Close date</option>
+                    <option value="date">Add date</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                  <label for="selectedStyle" class="form-label">Chart style</label>
+                  <select class="form-control" name="selectedStyle" id="selectedStyle">
+                    <option value="bar" selected>Stacked bars</option>
+                    <option value="line">Lines</option>
+                  </select>
+            </div>
+            <button type="submit" class="btn btn-primary">See chart</button>
+        </form>
+    </div>
     <div class="chart-container" style="position: relative; height:80vh; width:80vw">
         <canvas id="chart"></canvas>
     </div>
@@ -19,6 +49,7 @@
     <script>
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
     const ops = <?php echo json_encode($data); ?>;
     const leads = <?php echo json_encode($datas); ?>;
     const stages = <?php echo json_encode($data1); ?>;
@@ -26,6 +57,7 @@
     const chart = $("#chart");
     const chart2= $("#chart2");
 
+    let chartCanvas1;
     /// chart.js chart making function
     //args: chart= canvas for the chart.js
     const chartByWonLost = (chart) =>{
@@ -67,25 +99,29 @@
         var myChart = new Chart(chart, config);
     }
 
-    //args: chart= canvas, fromYear= starting year in yyyy format, toYear= ending year
-    const stackedChartByStages = (chart, fromYear, toYear) => {
+    //args: chart= canvas, fromYear= starting year in yyyy format, toYear= ending year from month= 1 - 12 row= string-> name of the row (eg: close_date or date), style= line or bar
+    const stackedChartByStages = (chart, fromYear, toYear, fromMonth = 1, toMonth = 12, row = 'close_date', style = 'bar') => {
         const labels = [];
         const datasets = [];
         
-
         //minden stage
         stages.forEach( stage => {
+            
+            const color='#' + (Math.floor(Math.random()*16777215).toString(16))
+
             let dataset= {
                 label: stage['name'],
-                backgroundColor: '#' + (Math.floor(Math.random()*16777215).toString(16)),
+                backgroundColor: color,
+                borderColor: color,
                 data: []
             };
-            for(let i= fromYear; i<=toYear; i++){
-                for(let j= 1; j<=12; j++){
-
+            for(let i = fromYear; i<=toYear; i++){
+                const from= (i===fromYear) ? fromMonth : 1;
+                const to = (i===toYear) ? toMonth : 12;
+                for(let j= from; j<= to; j++){
                 let count = ops.filter( op => {
                     //splitting the date string to array of nums
-                   let date = op['close_date'].split('-').map(x =>+x);
+                   let date = op[row].split('-').map(x =>+x);
 
                    if(date[0]==i && date[1]==j && op['stage_id']== stage['id']){
                         return true;
@@ -99,7 +135,9 @@
         });
 
         for(let i= fromYear; i<=toYear; i++){
-            for(let j=1; j<=12; j++){
+            const from= (i===fromYear) ? fromMonth : 1;
+                const to = (i===toYear) ? toMonth : 12;
+            for(let j=from; j<=to; j++){
                 labels.push(`${i}-${monthNames[j-1]}`);
             }
         }
@@ -110,13 +148,13 @@
         }
 
         const config ={
-            type: 'bar',
+            type: style,
             data: data,
             options: {
                 plugins: {
                 title: {
                     display: true,
-                    text: 'Chart.js Bar Chart - Stacked'
+                    text: `Stacked chart of opportunities by stages from ${fromYear} to ${toYear}`
                 },
                 },
                 responsive: true,
@@ -125,21 +163,47 @@
                 },
                 scales: {
                 x: {
-                    stacked: true,
+                    stacked: style==="bar",
                 },
                 y: {
-                    stacked: true
+                    stacked: style=="bar"
                 }
                 }
             }
         }
         console.log(data)
-        var myChart = new Chart(chart, config);
+        return new Chart(chart, config);
     }
 
+
+    //------Jquery functions
+
+    $('#stackedForm').submit( e => {
+        e.preventDefault();
+
+        let fromDate = $('#fromYear').val().split('-');
+        let toDate = $('#toYear').val().split('-');
+        let row = $('#selectedRow').val();
+        let style = $('#selectedStyle').val();
+        if(fromDate==="" || toDate==="" || row==="" || style===""){
+            alert("Plese fill in all the data areas!")
+        }
+        else if((fromDate[0]>toDate[0]) || (fromDate[0]==toDate[0] && fromDate[1]>toDate[1])){
+            alert("Please select an earlier date for from date than the to date!");
+        }
+        else if(fromDate!="" && toDate!="" && row && style){
+            chartCanvas1.destroy();
+
+            chartCanvas1=stackedChartByStages(chart, fromDate[0], toDate[0], fromDate[1], toDate[1], row, style);
+        }
+    })
+
+
     //chart építő függvények meghívása
-    stackedChartByStages(chart,2021, 2021);
+    chartCanvas1= stackedChartByStages(chart, 2021, 2021);
     chartByWonLost(chart2);
+
+
     </script>
 <?php 
     endif;

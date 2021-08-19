@@ -14,7 +14,7 @@
             if($_SESSION['roll']=='Manager') :
           ?>
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT; ?>/dashboards/displayDashboards">Dashboard</a>
+          <a class="nav-link" href="<?php echo URLROOT; ?>/dashboard/displayDashboard">Dashboard</a>
         </li>
         <?php endif; endif; ?>
         <li class="nav-item ">
