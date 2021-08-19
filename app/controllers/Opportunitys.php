@@ -11,6 +11,11 @@ class Opportunitys extends Controller{
         $this->leadContr = new Leads();
     }
 
+    public function getOpportunities()
+    {
+        return $this->opportunityModel->getOpportunitiesWithDependecy();
+    }
+
     public function displayOpportunities(){
         //only display opportunities if signed in
         if(!isset($_SESSION['user_id'])){
