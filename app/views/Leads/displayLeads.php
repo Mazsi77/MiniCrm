@@ -5,9 +5,10 @@
     if(!isset($_SESSION['user_id'])) : ?>
         <h1>Please Log in first</h1>
     <?php else : ?>
-        <h1>Your Leads</h1>
+        <div class="container-fluid">
+        <h1 class="my-2">Your Leads</h1>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLead">
+        <button type="button" class="my-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLead">
         Add new lead
         </button>
 
@@ -78,7 +79,7 @@
             </tbody>
                     </tbody>
             </table>
-            
+            </div>
 <?php endif; ?>
 
 <?php 

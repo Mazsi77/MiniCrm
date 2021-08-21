@@ -6,44 +6,45 @@
         <h1>Please Log in first</h1>
         
 <?php else : ?>
-    <h1>Dashboard</h1>
-    <div class="container">
-        <form id="stackedForm">
-            <h2>Chart settings</h2>
-            <div class="d-flex justify-content-between">
-                <div class="mb-3">
-                <label for="fromYear" class="form-label">From</label>
-                <input type="month" class="form-control" name="fromYear" id="fromYear" required>
+    <div class="container-fluid">
+        <h1>Dashboard</h1>
+        <div class="container">
+            <form id="stackedForm">
+                <h2>Chart settings</h2>
+                <div class="d-md-flex justify-content-between">
+                    <div class="mb-3">
+                    <label for="fromYear" class="form-label">From</label>
+                    <input type="month" class="form-control" name="fromYear" id="fromYear" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="toYear" class="form-label">To</label>
+                    <input type="month" class="form-control" name="toYear" id="toYear" required>
+                    </div>
                 </div>
                 <div class="mb-3">
-                <label for="toYear" class="form-label">To</label>
-                <input type="month" class="form-control" name="toYear" id="toYear" required>
+                    <label for="selectedRow" class="form-label">Data</label>
+                    <select class="form-control" name="selectedRow" id="selectedRow">
+                        <option value="close_date" selected>Close date</option>
+                        <option value="date">Add date</option>
+                    </select>
                 </div>
-            </div>
-            <div class="mb-3">
-                  <label for="selectedRow" class="form-label">Data</label>
-                  <select class="form-control" name="selectedRow" id="selectedRow">
-                    <option value="close_date" selected>Close date</option>
-                    <option value="date">Add date</option>
-                  </select>
-            </div>
-            <div class="mb-3">
-                  <label for="selectedStyle" class="form-label">Chart style</label>
-                  <select class="form-control" name="selectedStyle" id="selectedStyle">
-                    <option value="bar" selected>Stacked bars</option>
-                    <option value="line">Lines</option>
-                  </select>
-            </div>
-            <button type="submit" class="btn btn-primary">See chart</button>
-        </form>
+                <div class="mb-3">
+                    <label for="selectedStyle" class="form-label">Chart style</label>
+                    <select class="form-control" name="selectedStyle" id="selectedStyle">
+                        <option value="bar" selected>Stacked bars</option>
+                        <option value="line">Lines</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">See chart</button>
+            </form>
+        </div>
+        <div class="chart-container col-xxl-8">
+            <canvas id="chart"></canvas>
+        </div>
+        <div class="chart-container col-xxl-4">
+            <canvas id="chart2"></canvas>
+        </div>
     </div>
-    <div class="chart-container" style="position: relative; height:80vh; width:80vw">
-        <canvas id="chart"></canvas>
-    </div>
-    <div class="chart-container" style="position: relative; height:30vh; width:30vw">
-        <canvas id="chart2"></canvas>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
@@ -58,11 +59,22 @@
     const chart2= $("#chart2");
 
     let chartCanvas1;
+    let chartCanvas2;
     /// chart.js chart making function
     //args: chart= canvas for the chart.js
-    const chartByWonLost = (chart) =>{
-        const won = ops.filter( op => op['is_finished']==1 && op['is_won']==1).length;
-        const lost = ops.filter( op=> op['is_finished']==1 && op['is_won']==0).length;
+    const chartByWonLost = (chart, fromYear, toYear, fromMonth = 1, toMonth = 12, row = "close_date") =>{
+        
+        const filter = (op, isWon = 1) => {
+            if(op['is_finished']==0 || op['is_won']!=isWon) return false;
+
+            let date = op[row].split('-');
+            console.log(date[0]>=fromYear && date[0]<=toYear && !(date[0]==fromYear && date[1]<fromMonth) && !(date[0]==toYear && date[1]>toMonth))
+            
+            return (date[0]>=fromYear && date[0]<=toYear && !(date[0]==fromYear && date[1]<fromMonth) && !(date[0]==toYear && date[1]>toMonth))
+        }
+
+        const won = ops.filter( op => filter(op, 1)).length;
+        const lost = ops.filter( op=> filter(op, 0)).length;
 
         const labels= ['Won', 'Lost'];
         const data={
@@ -96,7 +108,7 @@
             }
         }
         //making the chart
-        var myChart = new Chart(chart, config);
+       return new Chart(chart, config);
     }
 
     //args: chart= canvas, fromYear= starting year in yyyy format, toYear= ending year from month= 1 - 12 row= string-> name of the row (eg: close_date or date), style= line or bar
@@ -154,7 +166,7 @@
                 plugins: {
                 title: {
                     display: true,
-                    text: `Stacked chart of opportunities by stages from ${fromYear} to ${toYear}`
+                    text: `Chart by number of opportunities by stages and months from ${fromYear} to ${toYear}`
                 },
                 },
                 responsive: true,
@@ -193,15 +205,17 @@
         }
         else if(fromDate!="" && toDate!="" && row && style){
             chartCanvas1.destroy();
-
             chartCanvas1=stackedChartByStages(chart, fromDate[0], toDate[0], fromDate[1], toDate[1], row, style);
+
+            chartCanvas2.destroy();
+            chartCanvas2=chartByWonLost(chart2, fromDate[0], toDate[0], fromDate[1], toDate[1], row);
         }
     })
 
 
-    //chart építő függvények meghívása
+    //-------initializing dashboard
     chartCanvas1= stackedChartByStages(chart, 2021, 2021);
-    chartByWonLost(chart2);
+    chartCanvas2 = chartByWonLost(chart2, 2021, 2021);
 
 
     </script>
