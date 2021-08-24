@@ -47,7 +47,14 @@ class Opportunity{
         return $this->db->execute();
     }
 
-    public function updateOpportunities(){
-        ///need's to be deeloped
+
+    public function changeStage($opid, $stageId){
+        $this->db->query('UPDATE opportunities SET stage_id = :stage_id WHERE id = :id');
+
+        $this->db->bind(':stage_id', $stageId);
+        $this->db->bind(':id', $opid);
+
+        return $this->db->execute();
     }
+
 }

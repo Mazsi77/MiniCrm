@@ -164,5 +164,19 @@ class Opportunitys extends Controller{
             }
         }
     }
-     
+
+    public function changeStage(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $opid = trim($_POST['opid']);
+            $stageId = trim($_POST['stageid']);
+
+            if($this->opportunityModel->changeStage($opid, $stageId)){
+                header('location: ' . URLROOT . '/Opportunitys/displayOpportunityCards');
+            }else{
+                $this->displayOpportunities();
+            }
+    }
+}
 }
