@@ -73,18 +73,19 @@
        
 
         <?php if (count($data) > 0): ?>
-            <table class="table table-hovrt table-inverse table-responsive">
+            <table id="myTable" class="table table-hovrt table-inverse table-responsive">
                 <thead class="thead-inverse">
                     <tr>
                   
-                 	<th>Opportunity Name</th>
-                    <th>Lead Name</th>
-                    <th>Stage Name</th>
-                    <th>Finished</th>
-                    <th>Won</th>             
-                    <th>Amount</th>
-                    <th>Probability</th>
-                    <th>Close date</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(0)">Opportunity Name</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(1)">Lead Name</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(2)">Stage Name</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(3)">Finished</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(4)">Won</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(5)">Amount</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(6)">Probability</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(7)">Close date</th>
+                   
                     </tr>
                     </thead>
                     <tbody>
@@ -99,7 +100,7 @@
        			<td><?php echo $row["amount"]; ?></td>
 				<td><?php echo $row["prob"]; ?></td>
 				<td><?php echo $row["close_date"]; ?></td>
-				<td><?php echo $row["opid"]; ?></td>
+				
                                 
                 <td> <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post">
                         <input type = "hidden" name = "opportunitysId" value = "<?php echo $row['opid']; ?>" />
@@ -116,6 +117,59 @@
             
        
 <?php endif; ?>
+
+<script>
+
+function sortTable(n) {
+	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	  table = document.getElementById("myTable");
+	  switching = true;
+	
+	  dir = "asc"; 
+	 
+	  while (switching) {
+	   
+	    switching = false;
+	    rows = table.rows;
+	   
+	    for (i = 1; i < (rows.length - 1); i++) {
+	    
+	      shouldSwitch = false;
+	   
+	      x = rows[i].getElementsByTagName("TD")[n];
+	      y = rows[i + 1].getElementsByTagName("TD")[n];
+	      var cmpX=isNaN(parseInt(x.innerHTML))?x.innerHTML.toLowerCase():parseInt(x.innerHTML);
+          var cmpY=isNaN(parseInt(y.innerHTML))?y.innerHTML.toLowerCase():parseInt(y.innerHTML);
+		cmpX=(cmpX=='-')?0:cmpX;
+		cmpY=(cmpY=='-')?0:cmpY;
+	  
+	      if (dir == "asc") {
+	    	  if (cmpX > cmpY) {
+	                shouldSwitch= true;
+	                break;
+	            }
+	      } else if (dir == "desc") {
+	    	  if (cmpX < cmpY) {
+	                shouldSwitch= true;
+	                break;
+	            }
+	      }
+	    }
+	    if (shouldSwitch) {
+
+	      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+	      switching = true;
+	      switchcount ++;      
+	    } else {
+	    
+	      if (switchcount == 0 && dir == "asc") {
+	        dir = "desc";
+	        switching = true;
+	      }
+	    }
+	  }
+	}
+</script>
 
 <?php 
     endif;
