@@ -11,7 +11,7 @@
         <button type="button" class="my-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLead">
           Add new lead
         </button>
-
+		
         <!-- Modal -->
         <div class="modal fade" id="newLead" tabindex="-1" aria-labelledby="newLeadLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -48,6 +48,13 @@
             </div>
         </div>
         </div>
+		
+		
+		<input type="text" id="myInput" class="form-control form-control mb-1 mt-1" onkeyup="myFunction()" placeholder=" Search...">
+		
+		
+		
+		
         <?php if (count($data) > 0): ?>
             <table id="myTable" class="table table-hover table-responsive mt-4">
                 <thead class="thead-inverse">
@@ -140,6 +147,30 @@ function sortTable(n) {
     }
   }
 }
+</script>
+
+<script>
+function myFunction() {
+var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+     td = tr[i].getElementsByTagName("td")[1]; 
+     td1 = tr[i].getElementsByTagName("td")[2]; 
+	 td2 = tr[i].getElementsByTagName("td")[3]; 
+     td3 = tr[i].getElementsByTagName("td")[4]; 
+/* ADD columns here that you want you to filter to be used on */
+    if (td) {
+      if ( (td.innerHTML.toUpperCase().indexOf(filter) > -1) || (td1.innerHTML.toUpperCase().indexOf(filter) > -1) || (td2.innerHTML.toUpperCase().indexOf(filter) > -1) || (td3.innerHTML.toUpperCase().indexOf(filter) > -1))  {            
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+} 
 </script>
 
 
