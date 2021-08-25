@@ -3,18 +3,18 @@
     require APPROOT . '/views/includes/navigation.php';
 
     if(!isset($_SESSION['user_id'])) : ?>
-        <h1>Please Log in first</h1>
+        <h1 class="pt-5">Please Log in first</h1>
         
     <?php else : ?>
-        <div class="container-fluid">
-       <h1>Your Opportunities</h1>
+        <div class="container-fluid pt-5">
+       <h1 class="mt-4 mb-2">Your Opportunities</h1>
 
        <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newOpportunity">
         Add new Opportunity
         </button> -->
         
-        <a name="" id="" class="btn btn-outline-primary" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
+        <a name="" id="" class="btn btn-outline-primary me-2" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
         <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <!-- Modal -->
         <div class="modal fade" id="newOpportunity" tabindex="-1" aria-labelledby="newOpportunityLabel" aria-hidden="true">
@@ -74,7 +74,7 @@
        
 
         <?php if (count($data) > 0): ?>
-            <table id="myTable" class="table table-hover table-responsive">
+            <table id="myTable" class="table table-hover table-responsive mt-4">
                 <thead class="thead-inverse">
                     <tr>
                   

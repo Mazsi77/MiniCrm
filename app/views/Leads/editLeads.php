@@ -8,7 +8,7 @@
         if(!isset($data)) : ?>
             <h1>Something went wrong! </h1>
     <?php else :  ?>
-        <div class="container">
+        <div class="container pt-5 mt-4">
             <form action="<?php echo URLROOT; ?>/leads/editLead" method="POST"> 
                 <input type = "hidden" name = "leadsId" value = "<?php echo $data->id; ?>" />
                 <div class="mb-3 row">

@@ -3,12 +3,12 @@
     require APPROOT . '/views/includes/navigation.php';
 
     if(!isset($_SESSION['user_id'])) : ?>
-        <h1>Please Log in first</h1>
+        <h1 class="mt-4 mb-2">Please Log in first</h1>
         
     <?php else : ?>
-    <div class="container-fluid ">
-        <h1>Your Opportunities</h1>
-        <a name="" id="" class="btn btn-light" href="<?php echo URLROOT . '/Opportunitys/displayOpportunities' ?>" role="button">Change View</a>
+    <div class="container-fluid pt-5">
+        <h1 class="mt-4 mb-2">Your Opportunities</h1>
+        <a name="" id="" class="btn btn-outline-primary me-2" href="<?php echo URLROOT . '/Opportunitys/displayOpportunities' ?>" role="button">Change View</a>
         <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
             <div class="overflow-y ">
         <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>

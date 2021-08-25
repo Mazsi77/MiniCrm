@@ -3,10 +3,10 @@
     require APPROOT . '/views/includes/navigation.php';
 
     if(!isset($_SESSION['user_id'])) : ?>
-        <h1>Please Log in first</h1>
+        <h1 class="pt-5 mt-4">Please Log in first</h1>
         
 <?php else : ?>
-    <div class="container">
+    <div class="container pt-5 mt-4">
                   <form action="<?php echo URLROOT; ?>/opportunitys/editOpportunity" method="POST">
                     <input type="hidden" name="currentId" value="<?php echo $data1->id; ?>">
                     <input type="hidden" name="url" value= "<?php echo $data2; ?>" >

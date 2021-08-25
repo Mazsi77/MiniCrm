@@ -5,11 +5,11 @@
     if(!isset($_SESSION['user_id'])) : ?>
         <h1>Please Log in first</h1>
     <?php else : ?>
-        <div class="container-fluid">
-        <h1 class="my-2">Your Leads</h1>
+        <div class="container-fluid pt-5">
+        <h1 class="mt-4 mb-2">Your Leads</h1>
         <!-- Button trigger modal -->
         <button type="button" class="my-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLead">
-        Add new lead
+          Add new lead
         </button>
 
         <!-- Modal -->
@@ -49,7 +49,7 @@
         </div>
         </div>
         <?php if (count($data) > 0): ?>
-            <table id="myTable" class="table table-hover table-responsive">
+            <table id="myTable" class="table table-hover table-responsive mt-4">
                 <thead class="thead-inverse">
                     <tr>
                     <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(0)">Id</th>
