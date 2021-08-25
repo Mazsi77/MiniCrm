@@ -14,7 +14,7 @@
         Add new Opportunity
         </button> -->
         
-        <a name="" id="" class="btn btn-light" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
+        <a name="" id="" class="btn btn-outline-primary" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
         <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <!-- Modal -->
         <div class="modal fade" id="newOpportunity" tabindex="-1" aria-labelledby="newOpportunityLabel" aria-hidden="true">
@@ -74,23 +74,21 @@
        
 
         <?php if (count($data) > 0): ?>
-            <table id="myTable" class="table table-hovrt table-inverse table-responsive">
+            <table id="myTable" class="table table-hover table-responsive">
                 <thead class="thead-inverse">
                     <tr>
                   
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(0)">Opportunity Name</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(1)">Lead Name</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(2)">Stage Name</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(3)">Finished</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(4)">Won</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(5)">Amount</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(6)">Probability</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(7)">Close date</th>
-                   
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(0)">Opportunity Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(1)">Lead Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(2)">Stage Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(3)">Finished</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(4)">Won</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(5)">Amount</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(6)">Probability</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(7)">Close date</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tbody>
+                </thead>
+                <tbody class="bg-light">
             <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
                 <tr>
                 <td><?php echo $row["opname"]; ?></td>
@@ -103,16 +101,15 @@
 				<td><?php echo $row["close_date"]; ?></td>
 				
                 <td>
-                    <a name="" id="edit<?php echo $row['opid']; ?>" class="btn btn-outline-primary" href="#" onclick="editOpportunity(<?php echo $row['opid']; ?>)" role="button">Edit</a>
+                    <a name="" id="edit<?php echo $row['opid']; ?>" class="btn btn-outline-dark" href="#" onclick="editOpportunity(<?php echo $row['opid']; ?>)" role="button">Edit</a>
                 </td>
                 <td>
-                <a name="deleteOp" id="delete<?php echo $row['opid']; ?>" class="btn btn-danger" href="#" onclick="deleteOpportunity(<?php echo $row['opid']; ?>)" role="button">Delete</a>
+                <a name="deleteOp" id="delete<?php echo $row['opid']; ?>" class="btn btn-outline-danger" href="#" onclick="deleteOpportunity(<?php echo $row['opid']; ?>)" role="button">Delete</a>
                 </td>
                                 
                 </tr>
             <?php endforeach; ?>
             </tbody>
-                    </tbody>
             </table>
             </div>
             <form action="<?php echo URLROOT . '/opportunitys/changeStage'?>" method="post" id="stageChange">

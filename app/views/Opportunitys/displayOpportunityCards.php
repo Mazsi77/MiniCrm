@@ -33,9 +33,8 @@
                             <p class="card-text mb-0"><?php echo $ops['email']; ?></p>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
-                            <a name="" id="edit<?php echo $ops['opid']; ?>" class="btn btn-outline-primary" href="#" onclick="editOpportunity(<?php echo $ops['opid']; ?>)" role="button">Edit</a>
-                            <a name="deleteOp" id="delete<?php echo $ops['opid']; ?>" class="btn btn-danger" href="#" onclick="deleteOpportunity(<?php echo $ops['opid']; ?>)" role="button">Delete</a>
-                            
+                            <a name="" id="edit<?php echo $ops['opid']; ?>" class="btn btn-outline-dark" href="#" onclick="editOpportunity(<?php echo $ops['opid']; ?>)" role="button">Edit</a>
+                            <a name="deleteOp" id="delete<?php echo $ops['opid']; ?>" class="btn btn-outline-danger" href="#" onclick="deleteOpportunity(<?php echo $ops['opid']; ?>)" role="button">Delete</a>
                         </div>
                     </div>
                     <div class="card-footer text-muted">

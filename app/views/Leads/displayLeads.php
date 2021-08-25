@@ -49,35 +49,33 @@
         </div>
         </div>
         <?php if (count($data) > 0): ?>
-            <table id="myTable" class="table table-hover table-borderless table-responsive">
+            <table id="myTable" class="table table-hover table-responsive">
                 <thead class="thead-inverse">
                     <tr>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(0)">Id</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(1)">Name</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(2)">Email</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(3)">Telephone</th>
-                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='white'" style="cursor: pointer;" onclick="sortTable(4)">Joined</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(0)">Id</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(1)">Name</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(2)">Email</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(3)">Telephone</th>
+                    <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(4)">Joined</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tbody>
+                    <tbody class="bg-light">
             <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>
                 <tr>
                 <td><?php echo implode('</td><td>', $row); ?></td>
                 <td> <form action="<?php echo URLROOT . '/leads/editLeadContr'?>" method="post">
                         <input type = "hidden" name = "leadsId" value = "<?php echo $row['id']; ?>" />
-                        <button type="submit" class="btn btn-outline">Edit</button>
+                        <button type="submit" class="btn btn-outline-dark">Edit</button>
                     </form>
                 </td>
                 <td> <form action="<?php echo URLROOT . '/leads/deleteLead'?>" method="post">
                         <input type = "hidden" name = "leadsId" value = "<?php echo $row['id']; ?>" />
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('If you remove <?php echo $row['name']; ?>, all opportunities which connects to him, would be deleted.  Are you sure?');">Delete</button>
+                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('If you remove <?php echo $row['name']; ?>, all opportunities which connects to him, would be deleted.  Are you sure?');">Delete</button>
                     </form>
                 </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
-                    </tbody>
             </table>
             
             
