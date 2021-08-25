@@ -106,8 +106,7 @@
         let leads= <?php echo json_encode($data); ?>;
         let stages= <?php echo json_encode($datas); ?>;
 
-        $('#new_lead').hide();
-        $('#new_stage').hide();
+        $(document).ready( x => {
 
         $.each(leads, function (i, lead) {
             $('#lead_select').append($('<option>', { 
@@ -162,6 +161,24 @@
             $('#prob').val(stage['def_prob']);
         })
 
+        if($('#new_lead_check').is(':checked')){  
+            $('#new_lead').show();
+            $('#old_lead').hide(); 
+        } 
+        else{ 
+            $('#new_lead').hide();
+            $('#old_lead').show();
+        }
+
+        if($('#new_stage_check').is(':checked')){  
+            $('#new_stage').show();
+            $('#old_stage').hide(); 
+        } 
+        else{ 
+            $('#new_stage').hide();
+            $('#old_stage').show();
+        }
+        })
     </script>
 <?php 
     endif;

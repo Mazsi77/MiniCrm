@@ -6,15 +6,16 @@
         <h1>Please Log in first</h1>
         
     <?php else : ?>
- 
+        <div class="container-fluid">
        <h1>Your Opportunities</h1>
 
        <!-- Button trigger modal -->
         <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newOpportunity">
         Add new Opportunity
         </button> -->
-        <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
+        
         <a name="" id="" class="btn btn-light" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
+        <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <!-- Modal -->
         <div class="modal fade" id="newOpportunity" tabindex="-1" aria-labelledby="newOpportunityLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -101,12 +102,11 @@
 				<td><?php echo $row["prob"]; ?></td>
 				<td><?php echo $row["close_date"]; ?></td>
 				
-                                
-                <td> <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post">
-                        <input type = "hidden" name = "opportunitysId" value = "<?php echo $row['opid']; ?>" />
-                        <input type="hidden" name="url" value="<?php echo URLROOT . '/opportunitys/displayOpportunities' ?>">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                <td>
+                    <a name="" id="edit<?php echo $row['opid']; ?>" class="btn btn-outline-primary" href="#" onclick="editOpportunity(<?php echo $row['opid']; ?>)" role="button">Edit</a>
+                </td>
+                <td>
+                <a name="deleteOp" id="delete<?php echo $row['opid']; ?>" class="btn btn-danger" href="#" onclick="deleteOpportunity(<?php echo $row['opid']; ?>)" role="button">Delete</a>
                 </td>
                                 
                 </tr>
@@ -114,10 +114,22 @@
             </tbody>
                     </tbody>
             </table>
-            
-       
+            </div>
+            <form action="<?php echo URLROOT . '/opportunitys/changeStage'?>" method="post" id="stageChange">
+                <input type = "hidden" name = "opid" id="sChangeOpId" value = "" >
+                <input type = "hidden" name = "stageid" id="sChangeStageId" value = "" >
+                <input type = "hidden" name = "url" value = "<?php echo URLROOT . '/opportunitys/displayOpportunities'; ?>" >
+            </form>
+            <form action="<?php echo URLROOT . '/opportunitys/editOpportunityContr' ?>" method="post" id="updateOp">
+                <input type = "hidden" name= "opid" id="updateOpId" value = "" >
+                <input type = "hidden" name = "url" value = "<?php echo URLROOT . '/opportunitys/displayOpportunities'; ?>" >
+            </form>
+            <form action="<?php echo URLROOT . '/opportunitys/deleteOpportunity'?>" method="post" id="deleteOp">
+                <input type = "hidden" name = "opportunitysId" id="deleteOpportunityId" value = "" >
+                <input type = "hidden" name = "url" value = "<?php echo URLROOT . '/opportunitys/displayOpportunities'; ?>" >
+            </form>
 <?php endif; ?>
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script>
 
 function sortTable(n) {
@@ -169,6 +181,16 @@ function sortTable(n) {
 	    }
 	  }
 	}
+    function editOpportunity(id){
+        $('#updateOpId').val(id);
+        $('#updateOp').submit();
+
+    }
+
+    function deleteOpportunity(id){
+        $('#deleteOpportunityId').val(id);
+        $('#deleteOp').submit();
+    }
 </script>
 
 <?php 
