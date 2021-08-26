@@ -6,43 +6,89 @@
         <h1>Please Log in first</h1>
         
 <?php else : ?>
-    <div class="container-fluid">
-        <h1>Dashboard</h1>
-        <div class="container">
-            <form id="stackedForm">
-                <h2>Chart settings</h2>
-                <div class="d-md-flex justify-content-between">
-                    <div class="mb-3">
-                    <label for="fromYear" class="form-label">From</label>
-                    <input type="month" class="form-control" name="fromYear" id="fromYear" required>
+    <div class="container-fluid pt-5 mt-4">
+        <h1 class="">Dashboard</h1>
+        <div class="container-fluid bg-light mt-4 pb-4">
+            <h3 class="py-4">Worth of opportinities in all stages</h3>
+            <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center" >
+                <?php foreach ($data1 as $row): $row= (array) $row; array_map('htmlentities', $row); 
+                    $sum = 0;
+                    foreach ($data as $ops): $ops= (array) $ops; array_map('htmlentities', $ops);
+                        if($row['id']==$ops['stage_id']) {
+                            $sum += $ops['amount'];
+                        }
+                    endforeach; ?>
+                    <div class="col">
+                        <div class="card text-center bg-secondary bg-gradient text-dark border-light">
+                            <div class="card-body">
+                            <h5 class="card-title"><?php echo $row['name'] ?></h5>
+                            <h4 class="card-title">$<?php echo $sum ?></h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                    <label for="toYear" class="form-label">To</label>
-                    <input type="month" class="form-control" name="toYear" id="toYear" required>
+                <?php endforeach ?>
+            </div>
+            </div>
+        <div class="container-sm bg-light mt-4 text-center rounded-2">
+            
+            <!-- Button trigger modal -->
+            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modal1">...</button></div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title">Chart Settings</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                            <form id="stackedForm" class="container-sm">
+                                    <div class="d-lg-flex justify-content-between">
+                                        <div class="mb-3">
+                                        <label for="fromYear" class="form-label">From</label>
+                                        <input type="month" class="form-control" name="fromYear" id="fromYear" required>
+                                        </div>
+                                        <div class="mb-3">
+                                        <label for="toYear" class="form-label">To</label>
+                                        <input type="month" class="form-control" name="toYear" id="toYear" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="selectedRow" class="form-label">Data</label>
+                                        <select class="form-control" name="selectedRow" id="selectedRow">
+                                            <option value="close_date" selected>Close date</option>
+                                            <option value="date">Add date</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="selectedStyle" class="form-label">Chart style</label>
+                                        <select class="form-control" name="selectedStyle" id="selectedStyle">
+                                            <option value="bar" selected>Stacked bars</option>
+                                            <option value="line">Lines</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="selectedRow" class="form-label">Data</label>
-                    <select class="form-control" name="selectedRow" id="selectedRow">
-                        <option value="close_date" selected>Close date</option>
-                        <option value="date">Add date</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="selectedStyle" class="form-label">Chart style</label>
-                    <select class="form-control" name="selectedStyle" id="selectedStyle">
-                        <option value="bar" selected>Stacked bars</option>
-                        <option value="line">Lines</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">See chart</button>
-            </form>
+            </div>
+                      
+            <h3 class="mt-lg-n4">Chart by number of opportunities by stages and months </h3>
+            <canvas class="my-2" id="chart"></canvas>
         </div>
-        <div class="chart-container col-xxl-8">
-            <canvas id="chart"></canvas>
-        </div>
-        <div class="chart-container col-xxl-4">
-            <canvas id="chart2"></canvas>
+        <div class="container d-sm-flex mt-4 text-center justify-content-between ps-0">
+            <div class="col-sm-6 bg-light rounded-2 mt-2 me-sm-2">
+                <h3 class="pt-4">Finished opportunities Won/lost</h3>
+                <canvas id="chart2"></canvas>
+            </div>
+            <div class="col-sm-6 bg-light rounded-2 mt-2 ms-sm-2">
+                <h3 class="pt-4">Ammount of $ in each state</h3>
+                <canvas id="chart3"></canvas>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -57,9 +103,11 @@
 
     const chart = $("#chart");
     const chart2= $("#chart2");
+    const chart3= $("#chart3"); 
 
     let chartCanvas1;
     let chartCanvas2;
+    let chartCanvas3;
     /// chart.js chart making function
     //args: chart= canvas for the chart.js
     const chartByWonLost = (chart, fromYear, toYear, fromMonth = 1, toMonth = 12, row = "close_date") =>{
@@ -80,24 +128,19 @@
         const data={
             labels : labels,
             datasets : [{
-                backgroundColor: ['green', 'red'],
+                backgroundColor: ['#52C41A', '#F5222D'],
                 data: [won, lost]
             },
             ]
         }
         const config ={
-            type: 'pie',
+            type: 'doughnut',
             data: data,
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
                 plugins: {
                     title:{
                         display: true,
-                        text: 'Finished opportunities by won or lost'
+                        text: `From ${fromYear}-${monthNames[fromMonth-1]} to ${toYear}-${monthNames[toMonth-1]}`
                     },
                     subtitle: {
                         display: true,
@@ -114,7 +157,8 @@
     //args: chart= canvas, fromYear= starting year in yyyy format, toYear= ending year from month= 1 - 12 row= string-> name of the row (eg: close_date or date), style= line or bar
     const stackedChartByStages = (chart, fromYear, toYear, fromMonth = 1, toMonth = 12, row = 'close_date', style = 'bar') => {
         const labels = [];
-        const datasets = [];
+        const datasets =[];
+
         
         //minden stage
         stages.forEach( stage => {
@@ -131,16 +175,16 @@
                 const from= (i===fromYear) ? fromMonth : 1;
                 const to = (i===toYear) ? toMonth : 12;
                 for(let j= from; j<= to; j++){
-                let count = ops.filter( op => {
-                    //splitting the date string to array of nums
-                   let date = op[row].split('-').map(x =>+x);
+                    let count = ops.filter( op => {
+                        //splitting the date string to array of nums
+                        let date = op[row].split('-').map(x =>+x);
 
-                   if(date[0]==i && date[1]==j && op['stage_id']== stage['id']){
-                        return true;
-                   } 
-                   return false;
-                }).length;
-                dataset['data'].push(count);
+                        if(date[0]==i && date[1]==j && op['stage_id']== stage['id']){
+                                return true;
+                        } 
+                        return false;
+                    }).length;
+                    dataset['data'].push(count);
             }
             }
             datasets.push(dataset);
@@ -153,7 +197,6 @@
                 labels.push(`${i}-${monthNames[j-1]}`);
             }
         }
-        console.log(labels);
         const data={
             labels: labels,
             datasets: datasets
@@ -166,7 +209,7 @@
                 plugins: {
                 title: {
                     display: true,
-                    text: `Chart by number of opportunities by stages and months from ${fromYear} to ${toYear}`
+                    text: `From ${fromYear}-${monthNames[fromMonth-1]} to ${toYear}-${monthNames[toMonth-1]}`
                 },
                 },
                 responsive: true,
@@ -183,10 +226,55 @@
                 }
             }
         }
-        console.log(data)
         return new Chart(chart, config);
     }
 
+    const chartByAmmountInStages = (chart) => {
+        let labels = [];
+        let dataset = [];
+        let bg = [];
+
+        //minden stage
+        stages.forEach( stage => {
+            
+            const color='#' + (Math.floor(Math.random()*16777215).toString(16)) ;
+            let amount = 0;
+            //console.log("\n\n\n" + stage['name'] + " " + stage['id'])  
+            ops.forEach(op =>{
+                if(op['stage_id'] === stage['id']) amount += op['amount']+1-1;
+            });
+
+            labels.push(stage['name']);
+            bg.push(color);
+            dataset.push(amount);
+        })
+
+        const data={
+            labels : labels,
+            datasets : [{
+                backgroundColor: bg,
+                data: dataset
+            },
+            ]
+        }
+        const config = {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Doughnut Chart'
+                }
+                }
+            },
+        };
+        return new Chart(chart, config);
+    }
 
     //------Jquery functions
 
@@ -207,16 +295,23 @@
             chartCanvas1.destroy();
             chartCanvas1=stackedChartByStages(chart, fromDate[0], toDate[0], fromDate[1], toDate[1], row, style);
 
-            chartCanvas2.destroy();
-            chartCanvas2=chartByWonLost(chart2, fromDate[0], toDate[0], fromDate[1], toDate[1], row);
         }
     })
 
-
+    var modal1 = document.getElementById('modal1');
+            
+    modal1.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        let button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        let recipient = button.getAttribute('data-bs-whatever');
+            
+        // Use above variables to manipulate the DOM
+    });
     //-------initializing dashboard
     chartCanvas1= stackedChartByStages(chart, 2021, 2021);
     chartCanvas2 = chartByWonLost(chart2, 2021, 2021);
-
+    chartCanvas3 = chartByAmmountInStages(chart3);
 
     </script>
 <?php 
