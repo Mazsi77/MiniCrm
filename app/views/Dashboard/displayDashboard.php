@@ -10,7 +10,7 @@
         <h1 class="">Dashboard</h1>
         <div class="container-fluid bg-light mt-4 pb-4">
             <h3 class="py-4">Worth of opportinities in all stages</h3>
-            <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center" >
+            <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center" id="cards-container">
                 <?php foreach ($data1 as $row): $row= (array) $row; array_map('htmlentities', $row); 
                     $sum = 0;
                     foreach ($data as $ops): $ops= (array) $ops; array_map('htmlentities', $ops);
@@ -28,7 +28,7 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            </div>
+        </div>
         <div class="container-sm bg-light mt-4 text-center rounded-2">
             
             <!-- Button trigger modal -->
@@ -42,7 +42,7 @@
                                     <h5 class="modal-title">Chart Settings</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-start">
                             <div class="container-fluid">
                             <form id="stackedForm" class="container-sm">
                                     <div class="d-lg-flex justify-content-between">
@@ -82,15 +82,116 @@
         </div>
         <div class="container d-sm-flex mt-4 text-center justify-content-between ps-0">
             <div class="col-sm-6 bg-light rounded-2 mt-2 me-sm-2">
-                <h3 class="pt-4">Finished opportunities Won/lost</h3>
+            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalWon">...</button></div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modalWon" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title">Chart Settings</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        <div class="modal-body text-start">
+                            <div class="container-fluid">
+                            <form id="WonLostForm" class="container-sm">
+                                    <div class="d-lg-flex justify-content-between">
+                                        <div class="mb-3">
+                                        <label for="fromYearWon" class="form-label">From</label>
+                                        <input type="month" class="form-control" name="fromYearWon" id="fromYearWon" required>
+                                        </div>
+                                        <div class="mb-3">
+                                        <label for="toYearWon" class="form-label">To</label>
+                                        <input type="month" class="form-control" name="toYearWon" id="toYearWon" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="selectedRowWon" class="form-label">Data</label>
+                                        <select class="form-control" name="selectedRowWon" id="selectedRowWon">
+                                            <option value="close_date" selected>Close date</option>
+                                            <option value="date">Add date</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <h3 class="mt-mg-n4">Finished opportunities Won/lost</h3>
                 <canvas id="chart2"></canvas>
             </div>
             <div class="col-sm-6 bg-light rounded-2 mt-2 ms-sm-2">
-                <h3 class="pt-4">Ammount of $ in each state</h3>
+            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalAmmount">...</button></div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modalAmmount" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title">Chart Settings</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        <div class="modal-body text-start">
+                            <div class="container-fluid">
+                            <form id="ammountForm" class="container-sm">
+                                    <div class="mb-3">
+                                        <label for="isExcepted" class="form-label">Data</label>
+                                        <select class="form-control" name="selectedRowWon" id="isExcepted">
+                                            <option value="0" selected>Amount</option>
+                                            <option value="1">Expected ammount</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <h3 class="mt-mg-n4">Ammount of $ in each state</h3>
                 <canvas id="chart3"></canvas>
             </div>
         </div>
     </div>
+    <div class="container-sm bg-light mt-4 text-center rounded-2">
+            
+            <!-- Button trigger modal -->
+            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalLeads">...</button></div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modalLeads" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header">
+                                    <h5 class="modal-title">Chart Settings</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        <div class="modal-body text-start">
+                            <div class="container-fluid">
+                            <form id="LeadsForm" class="container-sm">
+                                    <div class="d-lg-flex justify-content-between">
+                                        <div class="mb-3">
+                                        <label for="fromYear" class="form-label">From</label>
+                                        <input type="month" class="form-control" name="fromYear" id="fromYearLeads" required>
+                                        </div>
+                                        <div class="mb-3">
+                                        <label for="toYear" class="form-label">To</label>
+                                        <input type="month" class="form-control" name="toYear" id="toYearLeads" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                      
+            <h3 class="mt-lg-n4">Newly added Leads</h3>
+            <canvas class="my-2" id="chart4"></canvas>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
@@ -104,10 +205,12 @@
     const chart = $("#chart");
     const chart2= $("#chart2");
     const chart3= $("#chart3"); 
+    const chart4= $("#chart4");
 
     let chartCanvas1;
     let chartCanvas2;
     let chartCanvas3;
+    let chartCanvas4;
     /// chart.js chart making function
     //args: chart= canvas for the chart.js
     const chartByWonLost = (chart, fromYear, toYear, fromMonth = 1, toMonth = 12, row = "close_date") =>{
@@ -229,7 +332,7 @@
         return new Chart(chart, config);
     }
 
-    const chartByAmmountInStages = (chart) => {
+    const chartByAmmountInStages = (chart, expected = false) => {
         let labels = [];
         let dataset = [];
         let bg = [];
@@ -241,7 +344,11 @@
             let amount = 0;
             //console.log("\n\n\n" + stage['name'] + " " + stage['id'])  
             ops.forEach(op =>{
-                if(op['stage_id'] === stage['id']) amount += op['amount']+1-1;
+                if(op['stage_id'] === stage['id']){ 
+                    let am = parseInt(op['amount']);
+                    if(expected == 1) am *= op['prob'] == 0 ? 0 : (parseInt(op['prob'])/100);
+                    amount += am;
+                }
             });
 
             labels.push(stage['name']);
@@ -276,6 +383,54 @@
         return new Chart(chart, config);
     }
 
+    const chartByAdded = (chart, fromYear = 2021, toYear = 2021, fromMonth = 1, toMonth = 12) => {
+        const dataset = [];
+        const labels = [];
+
+        for(let i= fromYear; i<=toYear; i++){
+            const from= (i===fromYear) ? fromMonth : 1;
+            const to = (i===toYear) ? toMonth : 12;
+            for(let j=from; j<=to; j++){
+                labels.push(`${i}-${monthNames[j-1]}`);
+                let num = leads.filter( x => {
+                    date= x['join_date'].split('-');
+                    return (date[0] == i && date[1] == j);
+                }).length;
+                console.log(num);
+                dataset.push(num);
+            }
+        }
+        
+        const data={
+            labels : labels,
+            datasets : [{
+                label: "New Leads",
+                backgroundColor: '#722ED1',
+                borderColor: '#722ED1',
+                data: dataset
+            },
+            ]
+        }
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Doughnut Chart'
+                }
+                }
+            },
+        };
+
+        return new Chart(chart, config);
+    }
+
     //------Jquery functions
 
     $('#stackedForm').submit( e => {
@@ -298,20 +453,57 @@
         }
     })
 
-    var modal1 = document.getElementById('modal1');
-            
-    modal1.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        let button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
-        let recipient = button.getAttribute('data-bs-whatever');
-            
-        // Use above variables to manipulate the DOM
-    });
+    $('#WonLostForm').submit( e => {
+        e.preventDefault();
+
+        let fromDate = $('#fromYearWon').val().split('-');
+        let toDate = $('#toYearWon').val().split('-');
+        let row = $('#selectedRowWon').val();
+
+        if(fromDate==="" || toDate==="" || row===""){
+            alert("Plese fill in all the data areas!")
+        }
+        else if((fromDate[0]>toDate[0]) || (fromDate[0]==toDate[0] && fromDate[1]>toDate[1])){
+            alert("Please select an earlier date for from date than the to date!");
+        }
+        else if(fromDate!="" && toDate!="" && row){
+            chartCanvas2.destroy();
+            chartCanvas2 = chartByWonLost(chart2, fromDate[0], toDate[0], fromDate[1], toDate[1], row);
+        }
+    })
+
+    $('#ammountForm').submit(e => {
+        e.preventDefault();
+
+        let expected = $('#isExcepted').val();
+
+        chartCanvas3.destroy();
+        chartCanvas3 = chartByAmmountInStages(chart3, expected);
+    })
+
+    $('#LeadsForm').submit(e => {
+        e.preventDefault();
+
+        let fromDate = $('#fromYearLeads').val().split('-');
+        let toDate = $('#toYearLeads').val().split('-');
+        if(fromDate==="" || toDate===""){
+            alert("Plese fill in all the data areas!")
+        }
+        else if((fromDate[0]>toDate[0]) || (fromDate[0]==toDate[0] && fromDate[1]>toDate[1])){
+            alert("Please select an earlier date for from date than the to date!");
+        }
+        else if(fromDate!="" && toDate!=""){
+            chartCanvas4.destroy();
+            chartCanvas4=chartByAdded(chart4, fromDate[0], toDate[0], fromDate[1], toDate[1]);
+
+        }
+    })
+    
     //-------initializing dashboard
     chartCanvas1= stackedChartByStages(chart, 2021, 2021);
     chartCanvas2 = chartByWonLost(chart2, 2021, 2021);
     chartCanvas3 = chartByAmmountInStages(chart3);
+    chartCanvas4 = chartByAdded(chart4);
 
     </script>
 <?php 
