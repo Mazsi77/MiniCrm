@@ -6,8 +6,10 @@
         <h1>Please Log in first</h1>
         
 <?php else : ?>
-    <div class="container pt-5 mt-4">
-                  <form action="<?php echo URLROOT; ?>/opportunitys/addOpportunity" method="POST">
+    <div class="py-5"></div>
+    <div class="container rounded-2 bg-light">
+        <h3 class="pt-2">Add new Opportinity</h3>
+                  <form action="<?php echo URLROOT; ?>/opportunitys/addOpportunity" method="POST" class="py-4">
                     <div class="form-check">
                         <input class="form-check-input" name="new_lead" type="checkbox" value="true" id="new_lead_check">
                         <label class="form-check-label" for="flexCheckDefault">
@@ -99,7 +101,9 @@
                               <input type="number" class="form-control" name="prob" id="prob" placeholder="Probability">
                           </div>
                       </div>
-                      <button type="submit" class="btn btn-primary">Action</button>
+                      <a name="" id="" class="btn btn-outline-dark me-2" href="<?php echo URLROOT . '/opportunitys/displayOpportunities' ?>" role="button">Cancel</a>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      
                   </form>
                   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script>

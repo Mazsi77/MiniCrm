@@ -8,7 +8,7 @@
     <?php else : ?>
         <div class="container-fluid pt-5">
         
-       <h1 class="mt-4 mb-2"><?php echo $data1; ?></h1>
+       <h1 class="mt-4 mb-2"><?php echo $data1->name; ?></h1>
         
        <h4 class="mt-4 mb-2">The activities in the selected opportunity:</h4>
  

@@ -29,7 +29,7 @@
                 <?php endforeach ?>
             </div>
         </div>
-        <div class="container-sm bg-light mt-4 text-center rounded-2">
+        <div class="container-sm bg-light mt-4 pb-4 text-center rounded-2">
             
             <!-- Button trigger modal -->
             <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modal1">...</button></div>
@@ -80,82 +80,82 @@
             <h3 class="mt-lg-n4">Chart by number of opportunities by stages and months </h3>
             <canvas class="my-2" id="chart"></canvas>
         </div>
-        <div class="container d-sm-flex mt-4 text-center justify-content-between ps-0">
-            <div class="col-sm-6 bg-light rounded-2 mt-2 me-sm-2">
-            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalWon">...</button></div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="modalWon" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
-                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
-                    <div class="modal-content">
-                            <div class="modal-header">
-                                    <h5 class="modal-title">Chart Settings</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="container d-sm-flex mt-4 text-center justify-content-between ps-0 ">
+            <div class="col-sm-6 bg-light rounded-2 mt-2 me-sm-2 pb-4">
+                <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalWon">...</button></div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="modalWon" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Chart Settings</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                            <div class="modal-body text-start">
+                                <div class="container-fluid">
+                                <form id="WonLostForm" class="container-sm">
+                                        <div class="d-lg-flex justify-content-between">
+                                            <div class="mb-3">
+                                            <label for="fromYearWon" class="form-label">From</label>
+                                            <input type="month" class="form-control" name="fromYearWon" id="fromYearWon" required>
+                                            </div>
+                                            <div class="mb-3">
+                                            <label for="toYearWon" class="form-label">To</label>
+                                            <input type="month" class="form-control" name="toYearWon" id="toYearWon" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="selectedRowWon" class="form-label">Data</label>
+                                            <select class="form-control" name="selectedRowWon" id="selectedRowWon">
+                                                <option value="close_date" selected>Close date</option>
+                                                <option value="date">Add date</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                    </form>
                                 </div>
-                        <div class="modal-body text-start">
-                            <div class="container-fluid">
-                            <form id="WonLostForm" class="container-sm">
-                                    <div class="d-lg-flex justify-content-between">
-                                        <div class="mb-3">
-                                        <label for="fromYearWon" class="form-label">From</label>
-                                        <input type="month" class="form-control" name="fromYearWon" id="fromYearWon" required>
-                                        </div>
-                                        <div class="mb-3">
-                                        <label for="toYearWon" class="form-label">To</label>
-                                        <input type="month" class="form-control" name="toYearWon" id="toYearWon" required>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="selectedRowWon" class="form-label">Data</label>
-                                        <select class="form-control" name="selectedRowWon" id="selectedRowWon">
-                                            <option value="close_date" selected>Close date</option>
-                                            <option value="date">Add date</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
-                                </form>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
                 <h3 class="mt-mg-n4">Finished opportunities Won/lost</h3>
                 <canvas id="chart2"></canvas>
             </div>
-            <div class="col-sm-6 bg-light rounded-2 mt-2 ms-sm-2">
-            <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalAmmount">...</button></div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="modalAmmount" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
-                <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
-                    <div class="modal-content">
-                            <div class="modal-header">
-                                    <h5 class="modal-title">Chart Settings</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                        <div class="modal-body text-start">
-                            <div class="container-fluid">
-                            <form id="ammountForm" class="container-sm">
-                                    <div class="mb-3">
-                                        <label for="isExcepted" class="form-label">Data</label>
-                                        <select class="form-control" name="selectedRowWon" id="isExcepted">
-                                            <option value="0" selected>Amount</option>
-                                            <option value="1">Expected ammount</option>
-                                        </select>
+            <div class="col-sm-6 bg-light rounded-2 mt-2 ms-sm-2 pb-4">
+                    <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalAmmount">...</button></div>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalAmmount" tabindex="-1" role="dialog" aria-labelledby="modelTitle1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg .modal-fullscreen-sm-down" role="document">
+                            <div class="modal-content">
+                                    <div class="modal-header">
+                                            <h5 class="modal-title">Chart Settings</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                <div class="modal-body text-start">
+                                    <div class="container-fluid">
+                                    <form id="ammountForm" class="container-sm">
+                                            <div class="mb-3">
+                                                <label for="isExcepted" class="form-label">Data</label>
+                                                <select class="form-control" name="selectedRowWon" id="isExcepted">
+                                                    <option value="0" selected>Amount</option>
+                                                    <option value="1">Expected ammount</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
+                                        </form>
                                     </div>
-                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">See chart</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
                 <h3 class="mt-mg-n4">Ammount of $ in each state</h3>
                 <canvas id="chart3"></canvas>
             </div>
         </div>
     </div>
-    <div class="container-sm bg-light mt-4 text-center rounded-2">
+    <div class="container-sm bg-light mt-4 text-center rounded-2 pb-4">
             
             <!-- Button trigger modal -->
             <div class="container text-end pt-4"><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#modalLeads">...</button></div>

@@ -6,7 +6,6 @@ class Activity{
         $this->db = new Database;
     }
 
-    
     public function getActivitiesById($id){
         $this->db->query('SELECT * FROM activities WHERE activities.opport_id = :id');
         

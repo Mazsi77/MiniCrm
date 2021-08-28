@@ -1,10 +1,12 @@
 <?php
 require_once('Stages.php');
 require_once('Leads.php');
+
 class Opportunitys extends Controller{
     protected $opportunityModel;
     protected $stageContr;
     protected $leadContr;
+
     public function __construct(){
         $this->opportunityModel = $this->model('Opportunity');
         $this->stageContr = new Stages();
@@ -27,6 +29,10 @@ class Opportunitys extends Controller{
             $this->view('opportunitys/displayOpportunities', $data);
         }
     }
+
+    public function getOpportunityById($id){
+        return $this->opportunityModel->getOpportunityById($id);
+    }
     
     public function displayOpportunityCards(){
         if(!isset($_SESSION['user_id'])){
@@ -37,7 +43,9 @@ class Opportunitys extends Controller{
 
             $stages= $this->stageContr->getStages();
 
-            $this->view('opportunitys/displayOpportunityCards', $stages, $ops);
+            $acts = $this->opportunityModel->getGrouppedActivities();
+
+            $this->view('opportunitys/displayOpportunityCards', $stages, $ops, $acts);
         }
     }
     public function newOpportunity(){

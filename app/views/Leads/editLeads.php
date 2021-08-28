@@ -29,8 +29,9 @@
                         <input type="tel" class="form-control" name="telephone" id="telephone" placeholder="Telephone" value="<?php echo $data->telephone ?>" />
                     </div>
                 </div>
+                <a name="" id="" class="btn btn-outline-dark me-2" href="<?php echo URLROOT . '/leads/displayLeads' ?>" role="button">Cancel</a>
                 <button type="submit" class="btn btn-primary">Edit Lead</button>
-                <a name="" id="" class="btn btn-secondary" href="<?php echo URLROOT . '/leads/displayLeads' ?>" role="button">Cancel</a>
+                
             </form>
         </div>
     <?php 

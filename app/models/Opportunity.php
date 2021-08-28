@@ -22,6 +22,15 @@ class Opportunity{
         return $result;
     }
 
+    
+    public function getGrouppedActivities(){
+        $this->db->query('SELECT opport_id, COUNT(id) FROM activities GROUP BY opport_id');
+        
+        $result = $this->db->resultSet();
+        
+        return $result;
+    }
+
     public function getOpportunityById($id){
         $this->db->query('SELECT * FROM opportunities WHERE id = :id');
 

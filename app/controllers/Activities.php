@@ -11,8 +11,6 @@ class Activities extends Controller{
         $this->activityModel = $this->model('Activity');
         $this->opportunityContr = new Opportunitys();
     }
-
-    
     
     public function open_activities_contr(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -21,15 +19,15 @@ class Activities extends Controller{
             $id = trim($_POST['OpId']);
             
             $data= $this->activityModel->getActivitiesById($id);
+
+            $data1 = $this->opportunityContr->getOpportunityById($id);
            
             $datas= trim($_POST['OpId']);
             
-            $data1= trim($_POST['OpName']);
             
-           $this->view('activities/displayOpActivities', $data, $datas,$data1);
+           $this->view('activities/displayOpActivities', $data, $datas, $data1);
         }
     }
-    
     
     public function newActivity(){
         $form = [
