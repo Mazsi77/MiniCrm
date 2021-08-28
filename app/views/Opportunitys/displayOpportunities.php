@@ -106,7 +106,14 @@
                     <a name="" id="edit<?php echo $row['opid']; ?>" class="btn btn-outline-dark" href="#" onclick="editOpportunity(<?php echo $row['opid']; ?>)" role="button">Edit</a>
                 </td>
                 <td>
-                <a name="deleteOp" id="delete<?php echo $row['opid']; ?>" class="btn btn-outline-danger" href="#" onclick="deleteOpportunity(<?php echo $row['opid']; ?>)" role="button">Delete</a>
+              	  <a name="deleteOp" id="delete<?php echo $row['opid']; ?>" class="btn btn-outline-danger" href="#" onclick="deleteOpportunity(<?php echo $row['opid']; ?>)" role="button">Delete</a>
+                </td>
+              
+               <td> <form action="<?php echo URLROOT . '/activities/open_activities_contr'?>" method="post">
+                        <input type = "hidden" name = "OpId" value = "<?php echo $row['opid']; ?>" />
+                        <input type = "hidden" name = "OpName" value = "<?php echo $row['opname']; ?>" />
+                        <button type="submit" class="btn btn-outline-success">Activities</button>
+                    </form>
                 </td>
                                 
                 </tr>
