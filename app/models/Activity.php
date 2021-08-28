@@ -17,6 +17,17 @@ class Activity{
         return $result;
     }
     
+    public function getActivitiesById2($id){
+        $this->db->query('SELECT * FROM activities WHERE activities.id = :id');
+        
+        $this->db->bind(":id", $id);
+        
+        //$result = $this->db->resultSet();
+         return $this->db->single();
+        
+       // return $result;
+    }
+    
     
     public function addActivity($data){
         $this->db->query('INSERT INTO activities(description, type, deadline, is_done,opport_id) VALUES(:description, :type, :deadline, :is_done, :opport_id)');
@@ -42,6 +53,17 @@ class Activity{
         return $this->db->execute();
     }
     
+    public function editActivity($data){
+        $this->db->query('UPDATE activities SET description = :description, type = :type, deadline = :deadline,  is_done = :is_done WHERE activities.id = :id');
+        
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':description', $data['description']);
+        $this->db->bind(':type', $data['type']);
+        $this->db->bind(':deadline', $data['deadline']);
+        $this->db->bind(':is_done', $data['is_done']);  
+                
+        return $this->db->execute();
+    }
     
     
    
