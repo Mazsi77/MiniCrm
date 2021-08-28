@@ -97,6 +97,12 @@
              	<td><?php echo $row["deadline"]; ?></td>
              	<td><?php echo $row["is_done"]; ?></td>
              	
+             	<td> <form action="<?php echo URLROOT . '/activities/editActivityContr'?>" method="post">
+                        <input type = "hidden" name = "ActivityId" value = "<?php echo $row['id']; ?>" />
+                        <button type="submit" class="btn btn-outline-dark" >Edit</button>
+                    </form>
+                </td>
+             	
              	<td> <form action="<?php echo URLROOT . '/activities/deleteActivity'?>" method="post">
                         <input type = "hidden" name = "ActivityId" value = "<?php echo $row['id']; ?>" />
                         <button type="submit" class="btn btn-outline-danger" >Delete</button>

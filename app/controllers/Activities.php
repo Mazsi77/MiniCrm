@@ -77,5 +77,38 @@ class Activities extends Controller{
             }
         }
     }
+    
+    public function editActivityContr(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $id = trim($_POST['ActivityId']);
+            
+            $data= $this->activityModel->getActivitiesById2($id);
+            
+            $this->view('activities/editActivities', $data);
+        }
+    }
+    
+    public function editActivity(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data=[
+                'id' => trim($_POST['ActivityId']),
+                'description' => trim($_POST['description']),
+                'type' => trim($_POST['type']),
+                'deadline'=>trim($_POST['deadline']),
+                'is_done' =>trim($_POST['is_done'])
+                
+            ];
+            
+            if($this->activityModel->editActivity($data)){
+                header('location: ' . URLROOT . '/opportunitys/displayOpportunities');
+               
+            }
+            
+        }
+    }
    
 }
