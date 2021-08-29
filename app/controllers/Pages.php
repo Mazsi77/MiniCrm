@@ -8,8 +8,13 @@ class Pages extends Controller {
         $data = [
             'title' => 'Home page'
         ];
-
-        $this->view('index', $data);
+        if(isset($_SESSION['username'])){
+            header('location: ' . URLROOT . '/Opportunitys/displayOpportunities');
+        }
+        else{
+            header('location: ' . URLROOT . '/Users/login');
+        }
+        
     }
 
 }

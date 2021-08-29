@@ -28,12 +28,12 @@
             $this->db->bind(':username', $username);
 
             $row= $this->db->single();
-
+            if(isset($row->password)){
             $hashedPassword= $row->password;
-
+                
             if(password_verify($password, $hashedPassword)){
                 return $row;
-            } else{
+            }} else{
                 return false;
             }
         }

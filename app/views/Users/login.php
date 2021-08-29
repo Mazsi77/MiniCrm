@@ -1,52 +1,41 @@
 <?php
     require APPROOT . '/views/includes/head.php';
 ?>
-
-    <?php require APPROOT . '/views/includes/navigation.php';
-    ?>
-<section class="ftco-section center-section">
-		<div class="container-fluid">
-			<div class="row justify-content-center">
-				<div class="col-md-12 col-lg-10 ">
-					<div class="wrap d-md-flex justify-content-center">
-						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last bg-dark bg-gradient text-light">
-							<div class="text w-100">
-								<h2 class="fs-1">Welcome to login</h2>
-								<p class="fs-5">Don't have an account?</p>
-								<a href="<?php echo URLROOT?>/users/register" class="btn btn-primary fs-5">Register an account</a>
-							</div>
-			      </div>
-						<div class="login-wrap p-4 p-lg-5">
-			      	<div class="d-flex">
-			      		<div class="w-100">
-			      			<h3 class="fs-3 mb-4" class="mb-4">Sign In</h3>
-			      		</div>
-			      	</div>
-							<form action="<?php echo URLROOT; ?>/users/login" method="POST" class="signin-form">
-			      		<div class="form-group mb-3">
-			      			<label class="label fs-5" for="name">Username</label>
-			      			<input type="text" name="username" class="form-control fs-5" placeholder="Username" required>
-                            <span class="invalidFeedBack">
-                                <?php echo $data['usernameError']; ?>
-                            </span>  
-			      		</div>
-		            <div class="form-group mb-3 fs-5">
-		            	<label class="label" for="password">Password</label>
-		              <input type="password" name="password" class="form-control" placeholder="Password" required>
-                      <span class="invalidFeedBack">
-                            <?php echo $data['passwordError']; ?>
-                        </span>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary submit fs-5 px-3">Sign In</button>
-		            </div>
-		          </form>
-		        </div>
-		      </div>
+<div class="login-main">
+	<img class="login-logo" src="<?php echo URLROOT ?>/public/img/logo.png" alt="logo">
+	<div class="login-back"></div>
+	<div class="login-back-mobile"></div>
+	<div class="login-cont text-white text-center">
+		<img src="<?php echo URLROOT ?>/public/img/sapiens1.svg" alt="Illustration">
+			<div class="login-form">
+			<h1 class="fs-1">Welcome Back!</h1>
+			<p class="fs-4">Please Sign In!</p>
+			<form action="<?php echo URLROOT; ?>/users/login" method="POST" class="signin-form text-start col-12">
+				<div class="form-group mb-3">
+					<label class="label fs-4" for="name">Username</label>
+					<input type="text" name="username" class="form-control fs-4 <?php if($data['usernameError']!= ''){ echo 'is-invalid';} ?>" placeholder="Username" required>
+					<span class="invalid-feedback">
+						<?php echo $data['usernameError']; ?>
+					</span>  
 				</div>
-			</div>
+				<div class="form-group mb-3 fs-4">
+					<label class="label" for="password">Password</label>
+					<input type="password" name="password" class="form-control fs-4 <?php if($data['passwordError']!= ''){ echo 'is-invalid';} ?>" placeholder="Password" required>
+					<span class="invalid-feedback">
+						<?php echo $data['passwordError']; ?>
+					</span>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="mt-4 form-control btn login-btn submit fs-4 px-3">Sign In</button>
+				</div>
+			</form>
+			<div class="text w-100">
+				<p class="fs-5 pb-0 mb-0 pt-3">Don't have an account?</p>
+				<a href="<?php echo URLROOT?>/users/register" class="btn login-switch fs-5 pt-0">Register an account</a>
+			</div>	
 		</div>
-	</section>
+	</div>
+</div>
 <?php
     require APPROOT . '/views/includes/footer.php';
 ?>
