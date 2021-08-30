@@ -1,4 +1,4 @@
-<nav class="col-12 navbar navbar-expand-lg navbar-light bg-light fs-6 fixed-top">
+<nav class="col-12 navbar navbar-expand-lg border-secondary navbar-light bg-light fs-6 fixed-top">
   <div class="container-fluid">
       <a class="navbar-brand" href="<?php echo URLROOT; ?>/index">
       <img src="<?php echo URLROOT ?>/public/img/logo.png" alt="Logo" height="24">    

@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:wght@400;500&family=Inter:wght@300;400;500&display=swap');
 
-$headings-font-family: 'Playfair Display', serif;
+$headings-font-family: 'Andada Pro', serif;
 $font-family-base: 'Inter', sans-serif;
 $enable-negative-margins: true;
 
 $primary: #722ED1;
 $danger: #F5222D;
-$ligth: #EDEDED;
-$secondary: #EDEDED;
+$secondary: #F5F5FB;
+$info: #fec987;
+$light: white;
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 
 body{
-    background-color: $ligth;
+    background-color: $secondary;
 }

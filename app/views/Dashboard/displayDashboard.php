@@ -19,10 +19,10 @@
                         }
                     endforeach; ?>
                     <div class="col">
-                        <div class="card text-center bg-secondary bg-gradient text-dark border-light">
+                        <div class="card text-center bg-secondary border-primary">
                             <div class="card-body">
                             <h5 class="card-title"><?php echo $row['name'] ?></h5>
-                            <h4 class="card-title">$<?php echo $sum ?></h4>
+                            <p class="card-title text-primary fs-3">$<?php echo number_format($sum); ?></p>
                             </div>
                         </div>
                     </div>
@@ -197,6 +197,13 @@
     <script>
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // Create our number formatter.
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
 
     const ops = <?php echo json_encode($data); ?>;
     const leads = <?php echo json_encode($datas); ?>;
