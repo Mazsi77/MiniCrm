@@ -25,7 +25,7 @@ class Activities extends Controller{
             $datas= trim($_POST['OpId']);
             
             
-           $this->view('activities/displayOpActivities', $data, $datas, $data1);
+           $this->view('Activities/displayOpActivities', $data, $datas, $data1);
         }
     }
     
@@ -86,7 +86,7 @@ class Activities extends Controller{
             
             $data= $this->activityModel->getActivitiesById2($id);
             
-            $this->view('activities/editActivities', $data);
+            $this->view('Activities/editActivities', $data);
         }
     }
     

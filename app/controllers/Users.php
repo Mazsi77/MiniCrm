@@ -108,7 +108,7 @@ class Users extends Controller{
                 //Register user from model function
                 if($this->userModel->register($data)){
                     //Redirect tot the login page
-                    header('location: ' . URLROOT . '/users/login');
+                    header('location: ' . URLROOT . '/Users/login');
                     
                 }else{
                     die('something went wrong');
@@ -116,7 +116,7 @@ class Users extends Controller{
             }
         }
 
-        $this->view('users/register', $data);
+        $this->view('Users/register', $data);
     }
 
     public function login(){
@@ -156,7 +156,7 @@ class Users extends Controller{
                 }else{
                     $data['passwordError'] = 'Password or username is incorect.';
 
-                    $this->view('users/login', $data);
+                    $this->view('Users/login', $data);
                 }
             }
             
@@ -172,7 +172,7 @@ class Users extends Controller{
         }
 
 
-        $this->view('users/login', $data);
+        $this->view('Users/login', $data);
     }
     public function logout(){
         unset($_SESSION['user_id']);
