@@ -99,7 +99,7 @@
                     <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(2)">Telephone</th>
                     <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(3)">Added</th>
                     <th></th>
-                    <th></th>  
+  
                   </tr>
                     </thead>
                     <tbody class="bg-light">
