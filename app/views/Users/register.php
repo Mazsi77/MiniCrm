@@ -55,7 +55,7 @@
 				</div>
                 
 				<div class="form-group">
-					<button type="submit" class="mt-4 form-control btn login-btn submit fs-4 px-3">Sign In</button>
+					<button type="submit" class="mt-4 form-control btn login-btn submit fs-4 px-3">Register</button>
 				</div>
 			</form>
 			<div class="text w-100">

@@ -41,7 +41,7 @@ class Leads extends Controller{
                 'telephone' => trim($_POST['telephone'])
             ];
 
-            if(!(empty($form['name']) && empty($form['email']) && empty($form['telephone']))){
+            if(!empty($form['name']) && $form['name']!=""){
                 if($this->leadModel->addLead($form)){
                     header('location: ' . URLROOT . '/leads/displayLeads');
                 }
@@ -52,7 +52,7 @@ class Leads extends Controller{
     }
 
     public function addLead($form){
-        if(!(empty($form['name']) && empty($form['email']) && empty($form['telephone']))){
+        if(!empty($form['name']) && $form['name']!=""){
            $id = $this->leadModel->addLeadGetId($form);
            return $id;
         } 
@@ -90,14 +90,17 @@ class Leads extends Controller{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            $data=[
+            $form=[
                 'id' => trim($_POST['leadsId']),
                 'name' => trim($_POST['name']),
                 'email'=>trim($_POST['email']),
                 'telephone' =>trim($_POST['telephone'])
             ];
-
-            if($this->leadModel->editLead($data)){
+            if(!empty($form['name']) || $form['name'] != ""){
+            if($this->leadModel->editLead($form)){
+                header('location: ' . URLROOT . '/leads/displayLeads');
+            }}
+            else{
                 header('location: ' . URLROOT . '/leads/displayLeads');
             }
             

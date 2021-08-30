@@ -7,8 +7,8 @@
         
 <?php else : ?>
     <div class="py-5"></div>
-    <div class="container rounded-2 bg-light">
-        <h3 class="pt-2">Add new Opportinity</h3>
+    <div class="container rounded-2 px-4 bg-light">
+        <h3 class="py-4">Add new Opportinity</h3>
                   <form action="<?php echo URLROOT; ?>/opportunitys/addOpportunity" method="POST" class="py-4">
                     <div class="form-check">
                         <input class="form-check-input" name="new_lead" type="checkbox" value="true" id="new_lead_check">

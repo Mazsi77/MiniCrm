@@ -8,24 +8,26 @@
         if(!isset($data)) : ?>
             <h1>Something went wrong! </h1>
     <?php else :  ?>
-        <div class="container pt-5 mt-4">
+        <div class="py-5"></div>
+        <div class="container rounded-2 px-4 bg-light pb-4">
+            <h3 class="py-4">Edit Lead Details</h3>
             <form action="<?php echo URLROOT; ?>/leads/editLead" method="POST"> 
                 <input type = "hidden" name = "leadsId" value = "<?php echo $data->id; ?>" />
                 <div class="mb-3 row">
-                    <label for="name" class="col-sm-1-12 col-form-label"></label>
-                    <div class="col-sm-1-12">
+                    <label for="name" class="col-sm-12 col-form-label">Lead Name</label>
+                    <div class="col-sm-12">
                         <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $data->name ?>" >
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="email" class="col-sm-1-12 col-form-label"></label>
-                    <div class="col-sm-1-12">
+                    <label for="email" class="col-sm-12 col-form-label">Email</label>
+                    <div class="col-sm-12">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $data->email ?>" />
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="telephone" class="col-sm-1-12 col-form-label"></label>
-                    <div class="col-sm-1-12">
+                    <label for="telephone" class="col-sm-12 col-form-label">Telephone</label>
+                    <div class="col-sm-12">
                         <input type="tel" class="form-control" name="telephone" id="telephone" placeholder="Telephone" value="<?php echo $data->telephone ?>" />
                     </div>
                 </div>

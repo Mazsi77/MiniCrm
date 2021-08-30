@@ -21,12 +21,12 @@ class Opportunitys extends Controller{
     public function displayOpportunities(){
         //only display opportunities if signed in
         if(!isset($_SESSION['user_id'])){
-            $this->view('opportunitys/displayOpportunities');
+            $this->view('Opportunitys/displayOpportunities');
         }
         else{
             $data= $this->opportunityModel->getOpportunitiesWithDependecy();
 
-            $this->view('opportunitys/displayOpportunities', $data);
+            $this->view('Opportunitys/displayOpportunities', $data);
         }
     }
 
@@ -36,7 +36,7 @@ class Opportunitys extends Controller{
     
     public function displayOpportunityCards(){
         if(!isset($_SESSION['user_id'])){
-            $this->view('opportunitys/displayOpportunityCards');
+            $this->view('Opportunitys/displayOpportunityCards');
         }
         else{
             $ops= $this->opportunityModel->getOpportunities();
@@ -45,7 +45,7 @@ class Opportunitys extends Controller{
 
             $acts = $this->opportunityModel->getGrouppedActivities();
 
-            $this->view('opportunitys/displayOpportunityCards', $stages, $ops, $acts);
+            $this->view('Opportunitys/displayOpportunityCards', $stages, $ops, $acts);
         }
     }
     public function newOpportunity(){
@@ -155,7 +155,7 @@ class Opportunitys extends Controller{
         $leads = $this->leadContr->getLeads();
         $stages= $this->stageContr->getStages();
 
-        $this->view('/opportunitys/addOpportunities', $leads, $stages);
+        $this->view('/Opportunitys/addOpportunities', $leads, $stages);
     }
 
     public function editOpportunityContr(){
@@ -171,7 +171,7 @@ class Opportunitys extends Controller{
             $currentOp = $this->opportunityModel->getOpportunityById($opid);
 
 
-            $this->view('/opportunitys/editOpportunities', $leads, $stages, $currentOp, $url);
+            $this->view('/Opportunitys/editOpportunities', $leads, $stages, $currentOp, $url);
         }
 
     }
