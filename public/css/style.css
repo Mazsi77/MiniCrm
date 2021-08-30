@@ -37,11 +37,13 @@ html, body{
     background: linear-gradient(152.33deg, #722ED1 13.52%, #000000 99.83%);
     overflow: hidden;
     position: fixed;
+    transform: skew(0);
+    transition: transform 1s;
     transform: skew(-45deg);
     width: 100vw;
     height: 200vh;
     z-index: -1;
-    transition: transform 1s;
+    
 }
 .login-form{
     width: 50%;
