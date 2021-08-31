@@ -64,7 +64,7 @@ class Users extends Controller{
             //Validate password on length ad numeric values
             if(empty($data['password'])){
                 $data['passwordError'] = 'Please enter a password';
-            }elseif (strlen($data['password']<8)){
+            }elseif (strlen($data['password'])<8){
                 $data['passwordError'] = 'Password must be at least 8 characters';
             }/*elseif (!preg_match($passwordValidation, $data['password'])){
                 $data['passwordError'] = 'Password must have at least one numeric value';
