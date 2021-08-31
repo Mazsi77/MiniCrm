@@ -20,7 +20,7 @@ class Activities extends Controller{
             
             $data= $this->activityModel->getActivitiesById($id);
 
-            $data1 = $this->opportunityContr->getOpportunityById($id);
+            $data1 = $this->opportunityContr->getOpportunityByIdWithLead($id);
            
             $datas= trim($_POST['OpId']);
             

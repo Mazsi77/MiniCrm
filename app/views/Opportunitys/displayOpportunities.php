@@ -15,6 +15,7 @@
         </button> -->
         
         <a name="" id="" class="btn btn-outline-primary me-2" href="<?php echo URLROOT . '/Opportunitys/displayOpportunityCards' ?>" role="button">Change View</a>
+        <a name="" id="" class="btn btn-outline-success me-2" href="<?php echo URLROOT . '/Stages/displayStages' ?>" role="button">Manage Stages</a>
         <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
         <!-- Modal -->
         <div class="modal fade" id="newOpportunity" tabindex="-1" aria-labelledby="newOpportunityLabel" aria-hidden="true">
@@ -80,14 +81,15 @@
                 <thead class="thead-inverse">
                     <tr>
                   
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(0)">Opportunity Name</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(1)">Lead Name</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(2)">Stage Name</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(3)">Finished</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(4)">Won</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(5)">Amount</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(6)">Probability</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(7)">Close date</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(0)">Opportunity Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(1)">Lead Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(2)">Stage Name</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(3)">Amount $</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(4)">Probability %</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(5)">Close date</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="bg-light">
@@ -95,9 +97,23 @@
                 <tr>
                 <td><?php echo $row["opname"]; ?></td>
              	<td><?php echo $row["lead_name"]; ?></td>
-             	<td><?php echo $row["stage_name"]; ?></td>
-             	<td><?php echo $row["is_finished"]; ?></td>
-             	<td><?php echo $row["is_won"]; ?></td>
+                 <?php 
+                    $class= "";
+                    if($row['is_finished'] == 1){
+                        if($row['is_won'] == 1){
+                            $class = "success";
+                        }
+                        else{
+                            $class = "danger";
+                        }
+                    }
+                    else{
+                        $class = "primary";
+                    }
+                 
+                 ?>
+             	<td><span class="badge fs-6 fw-normal badge-pill bg-<?php echo $class ?>" ><?php echo $row["stage_name"]; ?></span></td>
+                 
        			<td><?php echo $row["amount"]; ?></td>
 				<td><?php echo $row["prob"]; ?></td>
 				<td><?php echo $row["close_date"]; ?></td>
@@ -212,9 +228,9 @@ var input, filter, table, tr, td, i;
      td = tr[i].getElementsByTagName("td")[0]; 
      td1 = tr[i].getElementsByTagName("td")[1]; 
 	 td2 = tr[i].getElementsByTagName("td")[2]; 
-     td3 = tr[i].getElementsByTagName("td")[5]; 
-	 td4 = tr[i].getElementsByTagName("td")[6]; 
-     td5 = tr[i].getElementsByTagName("td")[7]; 
+     td3 = tr[i].getElementsByTagName("td")[3]; 
+	 td4 = tr[i].getElementsByTagName("td")[4]; 
+     td5 = tr[i].getElementsByTagName("td")[5]; 
 /* ADD columns here that you want you to filter to be used on */
     if (td) {
       if ( (td.innerHTML.toUpperCase().indexOf(filter) > -1) || (td1.innerHTML.toUpperCase().indexOf(filter) > -1) || (td2.innerHTML.toUpperCase().indexOf(filter) > -1) || (td3.innerHTML.toUpperCase().indexOf(filter) > -1) || (td4.innerHTML.toUpperCase().indexOf(filter) > -1) || (td5.innerHTML.toUpperCase().indexOf(filter) > -1))  {            

@@ -1,7 +1,7 @@
 <nav class="col-12 navbar navbar-expand-lg border-secondary navbar-light bg-light fs-6 fixed-top">
   <div class="container-fluid">
       <a class="navbar-brand" href="<?php echo URLROOT; ?>/index">
-      <img src="<?php echo URLROOT ?>/public/img/logo.png" alt="Logo" height="24">    
+      <img src="<?php echo URLROOT ?>/public/img/logo2.png" alt="Logo" height="24">    
     </a>
       <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
           aria-expanded="false" aria-label="Toggle navigation">Menu</button>

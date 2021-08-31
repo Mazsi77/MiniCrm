@@ -20,6 +20,7 @@ html, body{
     position: fixed;
     height: 3rem;
     top: 1rem;
+    left: 1rem;
 }
 .login-cont{
     display: flex;

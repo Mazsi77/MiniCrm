@@ -2,7 +2,7 @@
     require APPROOT . '/views/includes/head.php';
 ?>
 <div class="login-main">
-	<img class="login-logo" src="<?php echo URLROOT ?>/public/img/logo.png" alt="logo">
+	<img class="login-logo" src="<?php echo URLROOT ?>/public/img/logo2.png" alt="logo">
 	<div class="login-back"></div>
 	<div class="login-cont text-white text-center">
 		<img src="<?php echo URLROOT ?>/public/img/sapiens1.svg" alt="Illustration">

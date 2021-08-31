@@ -8,11 +8,21 @@
     <?php else : ?>
         <div class="container-fluid pt-5">
         
-       <h1 class="mt-4 mb-2"><?php echo $data1->name; ?></h1>
+       <h1 class="mt-4 mb-2"><?php echo $data1->opname; ?></h1>
+       <p class="text-muted fs-5 mb-3 pb-0">Lead Info:</p>
+       <dl class="row pb-0 mb-0">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-9"><?php echo $data1->lead_name; ?></dd>
+
+            <dt class="col-sm-2">Email</dt>
+            <dd class="col-sm-9"><?php echo $data1->email ?></dd>
+
+            <dt class="col-sm-2">Telephone</dt>
+            <dd class="col-sm-9"><?php echo $data1->telephone ?></dd>
+        </dl>
+       
         
-       <h4 class="mt-4 mb-2">The activities in the selected opportunity:</h4>
- 
- 		
+       
  
        
        <!-- Button trigger modal -->
@@ -73,7 +83,7 @@
       
        
 	   <input type="text" id="myInput" class="form-control form-control mb-2 mt-3" onkeyup="myFunction()" placeholder=" Search...">
-		
+       <h4 class="mt-4 mb-2">The activities in the selected opportunity:</h4>
        
 
        
@@ -81,11 +91,12 @@
                 <thead class="thead-inverse">
                     <tr>
                   
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(0)">Description</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(1)">Type</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(2)">Deadline</th>
-                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#EDEDED'" style="cursor: pointer;" onclick="sortTable(3)">Done</th>
-                    
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(0)">Description</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(1)">Type</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(2)">Deadline</th>
+                        <th onMouseOver="this.style.backgroundColor='#c7c5bf'"  onMouseOut="this.style.backgroundColor='#F5F5FB'" style="cursor: pointer;" onclick="sortTable(3)">Done</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="bg-light">

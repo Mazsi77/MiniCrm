@@ -18,26 +18,26 @@
                     </div>
                     <div id="new_lead">
                         <div class="mb-3 row">
-                            <label for="lead_name" class="col-sm-1-12 col-form-label"></label>
+                            <label for="lead_name" class="col-sm-1-12 col-form-label">Lead name</label>
                             <div class="col-sm-1-12">
                                 <input type="text" class="form-control" name="lead_name" id="lead_name" placeholder="Lead name">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="lead_email" class="col-sm-1-12 col-form-label"></label>
+                            <label for="lead_email" class="col-sm-1-12 col-form-label pt-0">Email</label>
                             <div class="col-sm-1-12">
                                 <input type="email" class="form-control" name="lead_email" id="lead_email" placeholder="Lead email">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="lead_phone" class="col-sm-1-12 col-form-label"></label>
+                            <label for="lead_phone" class="col-sm-1-12 col-form-label pt-0">Telephone</label>
                             <div class="col-sm-1-12">
                                 <input type="tel" class="form-control" name="lead_phone" id="lead_phone" placeholder="Lead telephone">
                             </div>
                         </div>
                     </div>
                     <div id="old_lead">
-                        <select class="form-select form-select-lg mb-3" id="lead_select" name='lead_id' aria-label="Lead name" required>
+                        <select class="form-select  mb-3" id="lead_select" name='lead_id' aria-label="Lead name" required>
                             <option disabled selected>Please select a lead name</option>
                         </select>
                         <div class="d-flex justify-content-between">
@@ -47,58 +47,58 @@
                     </div>
                     
                       <div class="mb-3 row">
-                          <label for="name" class="col-sm-1-12 col-form-label"></label>
+                          <label for="name" class="col-sm-1-12 col-form-label pt-0">Name of Opportunity</label>
                           <div class="col-sm-1-12">
-                              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
                           </div>
                       </div>
                        <div class="mb-3 row">
-                          <label for="amount" class="col-sm-1-12 col-form-label"></label>
+                          <label for="amount" class="col-sm-1-12 col-form-label pt-0">Amount</label>
                           <div class="col-sm-1-12">
-                              <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount">
+                              <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" required>
                           </div>
                       </div>
                       <div class="mb-3 row">
-                          <label for="close_date" class="col-sm-1-12 col-form-label"></label>
+                          <label for="close_date" class="col-sm-1-12 col-form-label pt-0">Close date</label>
                           <div class="col-sm-1-12">
-                              <input type="date" class="form-control" name="close_date" id="close_date" placeholder="Close Date">
+                              <input type="date" class="form-control" name="close_date" id="close_date" placeholder="Close Date" required>
                           </div>
                       </div>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="new_stage" value="true" id="new_stage_check">
-                        <label class="form-check-label" for="new_stage_check">
+                        <label class="form-check-label pt-0" for="new_stage_check">
                             New Stage?
                         </label>
                     </div>
                     <div id="new_stage">
                         <div class="mb-3 row">
-                            <label for="stage_name" class="col-sm-1-12 col-form-label"></label>
+                            <label for="stage_name" class="col-sm-1-12 col-form-label pt-0">Stage Name</label>
                             <div class="col-sm-1-12">
                                 <input type="text" class="form-control" name="stage_name" id="stage_name" placeholder="Lead name">
                             </div>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="is_completed">
+                            <input class="form-check-input" type="checkbox" value="true" name="is_completed" id="is_completed">
                             <label class="form-check-label" for="is_completed">
                                 Is Completed?
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" id="is_won">
+                            <input class="form-check-input" type="checkbox" value="true" name="is_won" id="is_won">
                             <label class="form-check-label" for="is_won">
                                 Is won?
                             </label>
                         </div>
                     </div>
                     <div id="old_stage">
-                        <select class="form-select form-select-lg mb-3" id="stage_select" name='stage_id' aria-label="Lead name" required>
-                            <option disabled selected>Please select a lead name</option>
+                        <select class="form-select mb-3" id="stage_select" name='stage_id' aria-label="Lead name" required>
+                            <option disabled selected>Please select a stage name</option>
                         </select>
                     </div>
                     <div class="mb-3 row">
-                          <label for="prob" class="col-sm-1-12 col-form-label"></label>
+                          <label for="prob" class="col-sm-1-12 col-form-label">Probability of success</label>
                           <div class="col-sm-1-12">
-                              <input type="number" class="form-control" name="prob" id="prob" placeholder="Probability">
+                              <input min="0" max="100" type="number" class="form-control" name="prob" id="prob" placeholder="Probability">
                           </div>
                       </div>
                       <a name="" id="" class="btn btn-outline-dark me-2" href="<?php echo URLROOT . '/opportunitys/displayOpportunities' ?>" role="button">Cancel</a>

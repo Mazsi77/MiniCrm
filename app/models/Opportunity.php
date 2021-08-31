@@ -38,7 +38,13 @@ class Opportunity{
 
         return $this->db->single();
     }
+    public function getOpportunityByIdWithLead($id){
+        $this->db->query('SELECT *, opportunities.name AS opname, opportunities.id AS opid, leads.name AS lead_name, leads.id AS lead_id FROM opportunities INNER JOIN leads ON leads.id=opportunities.lead_id WHERE opportunities.id = :id');
+        
+        $this->db->bind(':id', $id);
 
+        return $this->db->single();
+    }
     public function addOpportunity($data){
         $this->db->query('INSERT INTO opportunities(lead_id, stage_id, name, amount, prob, close_date) VALUES(:lead_id, :stage_id,:name, :amount, :prob, :close_date)');
 

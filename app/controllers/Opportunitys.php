@@ -33,7 +33,9 @@ class Opportunitys extends Controller{
     public function getOpportunityById($id){
         return $this->opportunityModel->getOpportunityById($id);
     }
-    
+    public function getOpportunityByIdWithLead($id){
+        return $this->opportunityModel->getOpportunityByIdWithLead($id);
+    }
     public function displayOpportunityCards(){
         if(!isset($_SESSION['user_id'])){
             $this->view('Opportunitys/displayOpportunityCards');
@@ -139,16 +141,18 @@ class Opportunitys extends Controller{
                 $form['prob']= $stage['prob'];
             }
             else{
-                $form['stage_id'] = trim($_POST['stage_id']);
+                $form['stage_id'] = isset($_POST['stage_id']) ? trim($_POST['stage_id']) : "";
                 $form['prob'] = trim($_POST['prob']);
             }
             
-            if(!(empty($form['lead_id']) && empty($form['stage_id']) && empty($form['name']) && empty($form['amount']) && empty($form['prob']) && empty($form['close_date']))){
+            if( $form['lead_id'] != "" && $form['stage_id'] != "" && $form['name'] != "" && $form['amount'] != "" && $form['prob'] != "" && $form['close_date'] != "" ){
                 if($this->opportunityModel->addOpportunity($form)){
                     header('location: ' . URLROOT . '/Opportunitys/displayOpportunities');
                 }
             }else{
-                $this->displayOpportunities();
+                $leads = $this->leadContr->getLeads();
+                $stages= $this->stageContr->getStages();
+                $this->view('/Opportunitys/addOpportunities', $leads, $stages);
             }
         }
 

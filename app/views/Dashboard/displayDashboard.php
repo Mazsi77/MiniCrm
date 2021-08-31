@@ -2,7 +2,7 @@
     require APPROOT . '/views/includes/head.php';
     require APPROOT . '/views/includes/navigation.php';
 
-    if(!isset($_SESSION['user_id'])) : ?>
+    if(!isset($_SESSION['user_id']) || $_SESSION['roll'] != 'Manager') : ?>
         <h1>Please Log in first</h1>
         
 <?php else : ?>
@@ -150,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                <h3 class="mt-mg-n4">Ammount of $ in each state</h3>
+                <h3 class="mt-mg-n4">Amount of $ in each state</h3>
                 <canvas id="chart3"></canvas>
             </div>
         </div>
@@ -338,7 +338,9 @@
         }
         return new Chart(chart, config);
     }
-
+    const isWon = stage =>{
+        return stage['is_finished']== 1 ? stage['is_won'] == 1 ? 1 : -1 : 0;
+    }
     const chartByAmmountInStages = (chart, expected = false) => {
         let labels = [];
         let dataset = [];
@@ -346,14 +348,20 @@
 
         //minden stage
         stages.forEach( stage => {
-            
             const color='#' + (Math.floor(Math.random()*16777215).toString(16)) ;
             let amount = 0;
+            let won = isWon(stage);
             //console.log("\n\n\n" + stage['name'] + " " + stage['id'])  
             ops.forEach(op =>{
                 if(op['stage_id'] === stage['id']){ 
                     let am = parseInt(op['amount']);
-                    if(expected == 1) am *= op['prob'] == 0 ? 0 : (parseInt(op['prob'])/100);
+                    if(expected == 1) {
+                        if(won == 1) {am = am}
+                        else{
+                            if(won == -1) {am= 0;}
+                            else {am *= op['prob'] == 0 ? 0 : (parseInt(op['prob'])/100);}
+                        }
+                        };
                     amount += am;
                 }
             });
@@ -382,7 +390,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Doughnut Chart'
+                    text: 'Chart by ' + (expected == 1 ? "expected value" : "value")
                 }
                 }
             },
@@ -429,7 +437,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Doughnut Chart'
+                    text: `From ${fromYear}-${monthNames[fromMonth-1]} to ${toYear}-${monthNames[toMonth-1]}`
                 }
                 }
             },

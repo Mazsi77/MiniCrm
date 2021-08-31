@@ -92,7 +92,7 @@
                     </div>
                     <div id="old_stage">
                         <select class="form-select form-select-lg mb-3" id="stage_select" name='stage_id' aria-label="Lead name" required>
-                            <option disabled selected>Please select a lead name</option>
+                            <option disabled selected>Please select a stage name</option>
                         </select>
                     </div>
                     <div class="mb-3 row">

@@ -32,4 +32,23 @@
 
             return -1;
         }
+        public function deleteStage($id){
+            $this->db->query('DELETE FROM stages WHERE stages.id = :id');
+
+            $this->db->bind(":id", $id);
+
+            return $this->db->execute();
+        }
+
+        public function editStage($data){
+            $this->db->query('UPDATE stages SET name = :name, is_won = :is_won , is_finished = :is_finished , def_prob = :def_prob WHERE id = :id');
+        
+            $this->db->bind(':name', $data['name']);
+            $this->db->bind(':is_finished', $data['is_completed']);
+            $this->db->bind(':is_won', $data['is_won']);
+            $this->db->bind(':def_prob', $data['prob']);
+            $this->db->bind(':id', $data['id']);
+
+            return $this->db->execute();
+        }
     }

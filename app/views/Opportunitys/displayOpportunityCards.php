@@ -9,6 +9,7 @@
     <div class="container-fluid pt-5">
         <h1 class="mt-4 mb-2">Your Opportunities</h1>
         <a name="" id="" class="btn btn-outline-primary me-2" href="<?php echo URLROOT . '/Opportunitys/displayOpportunities' ?>" role="button">Change View</a>
+        <a name="" id="" class="btn btn-outline-success me-2" href="<?php echo URLROOT . '/Stages/displayStages' ?>" role="button">Manage Stages</a>
         <a href="<?php echo URLROOT . '/Opportunitys/addOpportunity' ?>" class="btn btn-primary">Add New Opportunity</a>
             <div class="overflow-y ">
         <?php foreach ($data as $row): $row= (array) $row; array_map('htmlentities', $row); ?>

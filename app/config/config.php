@@ -12,4 +12,4 @@
     define('URLROOT', 'http://localhost/MiniCrm');
 
     //Sitename
-    define('SITENAME', 'MiniCRM');
+    define('SITENAME', 'SapiCRM');
