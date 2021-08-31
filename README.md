@@ -23,3 +23,8 @@ The data transmission take place with SFTP, which is a file transfer protocol bu
 
 ## To run the application, go to the following link:
 ## http://students.csik.sapientia.ro/~gi2019smm/MiniCrm/Users/login
+
+### If you don't want to create a new user, you could sign in with the following username and password:
+ - Username: ASD
+ - Password: asd
+
